@@ -1,5 +1,5 @@
-const registerationForm = document.getElementById("registeration-form");
-registerationForm.addEventListener("submit", validateForm);
+const registrationForm = document.getElementById("registration-form");
+registrationForm.addEventListener("submit", validateForm);
 
 function validateForm(event) {
   event.preventDefault();
@@ -57,8 +57,15 @@ function handleRegisteration(user) {
     users = "[]";
   }
   users = JSON.parse(users);
+  for (existingUser of users) {
+    if (existingUser.email == user.email) {
+      showError("Email is already registered")
+      return;
+    }
+  }
   users.push(user);
   localStorage.setItem("users", JSON.stringify(users));
+  location.assign("./login.html")
 }
 
 function showError(msg) {

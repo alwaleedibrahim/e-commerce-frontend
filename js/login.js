@@ -13,6 +13,7 @@ function handleLogin(event) {
     if (user.email == email && user.password == password) {
       addToCookies("email", email);
       location.assign("./index.html");
+      return;
     }
   }
 
