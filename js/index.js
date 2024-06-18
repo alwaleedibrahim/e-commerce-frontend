@@ -1,19 +1,44 @@
 // /////////////////////////////////////////////// Get Data //////////////////////////////////////// //
 let data = [];
-
-fetch('../api/products.json')
-    .then(response => response.json())
-    .then(res => {
-        data = res;
-        saleCard(data);
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
-
+window.onload = function(){
+    if(location.search ==='' ){
+        fetch('../api/products.json')
+        .then(response => response.json())
+        .then(res => {
+            data = res;
+            data = data.laptop.slice(0,6) // defalut logic
+            saleCard(data);
+        })
+       
+    }else{
+        fetch('../api/products.json')
+        .then(response => response.json())
+        .then(res => {
+            data = res;
+            let searchVal = location.search.split('search=')[1].split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
+            searchProduct(searchVal)
+        })
+        
+    }
+}
 // /////////////////////////////////////////////// Create Sale Card ///////////////////////////////// //
 const saleDiv = document.getElementById("sale");
 
+function searchProduct(sValue){
+    let searchResult = []
+    for(const cat in data){
+        for(const prod of data[cat]){
+            if(prod.name.toLowerCase().includes(sValue.toLowerCase())){
+                searchResult.push(prod)
+            }
+        }
+    }
+    saleCard(searchResult)
+}
+
+
 function saleCard(data) {
-    let cards = data.laptop.slice(0, 6);
+    let cards = data;
     cards.forEach(card => {
         const originalPrice = card.price;
         const salePrice = card.sale_price;
@@ -87,7 +112,7 @@ function saleCard(data) {
             ratingContainer.style.margin = "0.5rem 0";
 
             const getStars = ratingContainer.querySelectorAll(".rate");
-            const stars = Math.round(card.product_rating.value);
+            const stars = Math.round(card.product_rating?.value);
             getStars.forEach((ele, index) => {
                 if (index < stars) {
                     ele.classList.add("stars-filled");
