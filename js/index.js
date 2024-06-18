@@ -1,39 +1,51 @@
 // /////////////////////////////////////////////// Get Data //////////////////////////////////////// //
 let data = [];
 window.onload = function(){
-    if(location.search ==='' ){
-        fetch('../api/products.json')
-        .then(response => response.json())
-        .then(res => {
-            data = res;
-            data = data.laptop.slice(0,6) // defalut logic
-            saleCard(data);
-        })
-       
-    }else{
-        fetch('../api/products.json')
-        .then(response => response.json())
-        .then(res => {
-            data = res;
-            let searchVal = location.search.split('search=')[1].split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
-            searchProduct(searchVal)
-        })
-        
+    let xhr = new XMLHttpRequest();
+    xhr.open('Get','../api/products.json');
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4 && xhr.status ===200 ){
+            data = JSON.parse(xhr.responseText);
+            if(location.pathname =='/index.html'&& location.search ==""){
+                saleCard(data.laptop.slice(0,10));  
+            }
+            else if(location.pathname ==='/404.html'){
+                if(location.search ==""){
+                    let searchVal = '';
+                    searchProduct(searchVal,true)
+                }else{
+                    let searchVal = location.search.split('search=')[1].split("&")[0];;
+                    searchProduct(searchVal,true)
+                }
+            }
+            else {
+                let searchVal = location.search.split('search=')[1].split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
+                searchProduct(searchVal,false)
+            }
+        }
     }
+    xhr.send();
+  
 }
 // /////////////////////////////////////////////// Create Sale Card ///////////////////////////////// //
 const saleDiv = document.getElementById("sale");
 
-function searchProduct(sValue){
+function searchProduct(sValue,erroPage){
     let searchResult = []
     for(const cat in data){
-        for(const prod of data[cat]){
-            if(prod.name.toLowerCase().includes(sValue.toLowerCase())){
-                searchResult.push(prod)
+            for(const prod of data[cat]){
+                if(prod.name.toLowerCase().includes(sValue.toLowerCase())){
+                    searchResult.push(prod)
+                }
             }
         }
-    }
-    saleCard(searchResult)
+        if(erroPage && searchResult.length > 0){
+            document.getElementById("error-div").parentElement.remove()
+            saleCard(searchResult)
+        }
+        else {
+            saleCard(searchResult)
+        }
 }
 
 
