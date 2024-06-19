@@ -1,85 +1,64 @@
 // /////////////////////////////////////////////// Get Data //////////////////////////////////////// //
 let data = [];
 let dataSearch = [];
-window.onload = function(){
+window.onload = function () {
     let xhr = new XMLHttpRequest();
-    xhr.open('Get','./api/products.json');
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState === 4 && xhr.status ===200 ){
+    xhr.open('Get', './api/products.json');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             data = JSON.parse(xhr.responseText);
-            if(location.pathname =='/index.html'&& location.search ==""){
-                saleCard(data.laptop.slice(0,10));  
+            if (location.pathname == '/index.html' && location.search == "") {
+                saleCard(data.laptop.slice(0, 10));
             }
-            else if(location.pathname ==='/404.html'){
-                if(location.search ==""){
+            else if (location.pathname === '/404.html') {
+                if (location.search == "") {
                     let searchVal = '';
-                    searchProduct(searchVal,true)
-                }else{
+                    searchProduct(searchVal, true)
+                } else {
                     let searchVal = location.search.split('search=')[1].split("&")[0];
-                    searchProduct(searchVal,true)
+                    searchProduct(searchVal, true)
                 }
+            }else if (location.pathname == '/product.html'){
+                secSaleCard(data);
             }
             else {
-                let search = location.search.split('search=')[1]? location.search.split('search=')[1] : ""
+                let search = location.search.split('search=')[1] ? location.search.split('search=')[1] : ""
                 let searchVal = search.split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
-                searchProduct(searchVal,false)
+                searchProduct(searchVal, false)
             }
         }
     }
     xhr.send();
-    
-}
-// /////////////////////////////////////////////// Create Sale Card ///////////////////////////////// //
-const saleDiv = document.getElementById("sale");
 
-function searchProduct(sValue,erroPage){
-    let searchCount = location.search.split('count=')[1]?.split("&")[0];
-    let searchResult = []
-    for(const cat in data){
-            for(const prod of data[cat]){
-                if(prod.name.toLowerCase().includes(sValue.toLowerCase())){
-                    searchResult.push(prod)
-                }
-            }
-        }
-        
-        if(erroPage && searchResult.length > 0){
-            document.getElementById("error-div").parentElement.remove()
-            saleCard(searchResult)
-        }
-        else {
-            saleCard(searchResult)
-        }
-        
 }
 
+// //////////////////////////////////////////// Cookies Functions ///////////////////////////////// //
+function productCookies(data , productWindow){
+    let date = new Date();
+    date.setDate(date.getDate() + 2);
+    let expires = "expires=" + date.toUTCString();
+    let product = data;
+    productWindow.document.cookie = 'product=' + JSON.stringify(product) + ";" + expires + ";path=/";
+}
 
-function saleCard(data) {
+// //////////////////////////////////////////// Create Sale Card ///////////////////////////////// //
+function card(data, div) {
     let cards = data;
-    if(dataSearch.length===0){
-        dataSearch=data;
-    }
-    document.getElementById('bar-product-counter').innerHTML = data.length
-    saleDiv.innerHTML ='';
+
+    console.log(data, div);
     cards.forEach(card => {
         const originalPrice = card.price;
         const salePrice = card.sale_price;
-    
+
         // Main Card Container //
         const cardDiv = document.createElement("div");
         cardDiv.className = "card";
-        saleDiv.appendChild(cardDiv);
-
-        // Discount Span //
-     
-
+        div.appendChild(cardDiv);
 
         // Wish list Icon //
         const favIcon = document.createElement("i");
         favIcon.className = "hover-icon fa-regular fa-heart";
         cardDiv.appendChild(favIcon);
-
-      
 
         // Images Container //
         const imagesDiv = document.createElement("div");
@@ -146,8 +125,8 @@ function saleCard(data) {
         priceDiv.className = "price-div";
         cardContent.appendChild(priceDiv);
         // price logic
-        if(salePrice !== null){
-            
+        if (salePrice !== null) {
+
             const saleSpan = document.createElement("span");
             saleSpan.className = "sale";
             cardDiv.appendChild(saleSpan);
@@ -155,7 +134,7 @@ function saleCard(data) {
             saleSpan.textContent = "Sale " + discountPercentage;
 
             const salePriceSpan = document.createElement("span");
-            salePriceSpan.className = "sale-price";  
+            salePriceSpan.className = "sale-price";
             priceDiv.appendChild(salePriceSpan);
             salePriceSpan.innerText = originalPrice + " $";
 
@@ -163,9 +142,9 @@ function saleCard(data) {
             priceSpan.className = "price";
             priceDiv.appendChild(priceSpan);
             priceSpan.innerText = originalPrice + " $";
-        }else{
+        } else {
             const salePriceSpan = document.createElement("span");
-            salePriceSpan.className = "sale-price";  
+            salePriceSpan.className = "sale-price";
             priceDiv.appendChild(salePriceSpan);
             salePriceSpan.innerText = originalPrice + " $";
         }
@@ -175,19 +154,88 @@ function saleCard(data) {
         cartBtn.classList.add("btn-orange");
         cartBtn.innerText = "Add To Cart";
         cardContent.appendChild(cartBtn);
-    }
 
-);
+        cardDiv.addEventListener("click", () => {
+            let cardData = card;
+            let productWindow = window.open("/product.html", "_self");
+            productWindow.addEventListener("load", () => {
+                let current = productWindow.document.getElementById("product");
+                if (current) {
+                    current.innerHTML = JSON.stringify(cardData);
+                    productCookies(card, productWindow);
+                    console.log(data);
+                }
+            });
+        });
+    });
+}
+
+const secSaleDiv = document.getElementById("sec-sale");
+
+function secSaleCard(data) {
+    let cards = data.laptop.slice(0, 4);
+    card(cards, secSaleDiv);
+}
+
+// ////////////////////////////////////////// Card Functions /////////////////////////////////////// //
+
+function decreasing() {
+    if (defaultQuantity > 1) {
+        defaultQuantity--;
+        quantitySpan.innerHTML = defaultQuantity;
+    }
+}
+
+function increasing() {
+    defaultQuantity++;
+    quantitySpan.innerHTML = defaultQuantity;
 }
 
 
-function filtterFunction(by){
-    switch(by){
+// ////////////////////////////////////////// Filter Functions /////////////////////////////////////// //
+const saleDiv = document.getElementById("sale");
+
+function saleCard(data) {
+    if (dataSearch.length === 0) {
+        dataSearch = data;
+    }
+
+    console.log(data);
+    document.getElementById('bar-product-counter').innerHTML = data.length
+    saleDiv.innerHTML = '';
+
+    card(data, saleDiv)
+}
+
+function searchProduct(sValue, erroPage) {
+    let searchCount = location.search.split('count=')[1]?.split("&")[0];
+    let searchResult = []
+    for (const cat in data) {
+        for (const prod of data[cat]) {
+            if (prod.name.toLowerCase().includes(sValue.toLowerCase())) {
+                searchResult.push(prod)
+            }
+        }
+    }
+
+    if (erroPage && searchResult.length > 0) {
+        document.getElementById("error-div").parentElement.remove()
+        saleCard(searchResult)
+    }
+    else {
+        saleCard(searchResult)
+    }
+
+}
+
+
+function filtterFunction(by) {
+    switch (by) {
         case 'up':
-            dataSearch.sort((prod1,prod2)=>prod1.price-prod2.price);
+            dataSearch.sort((prod1, prod2) => prod1.price - prod2.price);
             break;
         case 'down':
-            dataSearch.sort((prod1,prod2)=>prod2.price-prod1.price);
+            dataSearch.sort((prod1, prod2) => prod2.price - prod1.price);
             break;
         case 'best':
             dataSearch.sort((prod1, prod2) => {
@@ -202,8 +250,8 @@ function filtterFunction(by){
                     return 0;
                 }
             });
-            
+
             break;
-        }
-        saleCard(dataSearch);
+    }
+    saleCard(dataSearch);
 }

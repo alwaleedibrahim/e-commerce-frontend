@@ -96,10 +96,14 @@ h6 {
     margin: 0 auto;
 }
 
-.section-headers{
-    text-transform: uppercase;
+.section-headers {
+    text-transform: capitalize;
     color: var(--secondary-color);
-    border-right: 9px solid var(--secondary-color);
+    padding: 0.5rem 1.5rem;
+    border-left: 19px solid var(--secondary-color);
+    height: fit-content;
+    border-radius: 5px;
+    margin-bottom: 3rem;
 }
 
 .btn-orange{
@@ -205,10 +209,10 @@ nav{
 /* *************************************** End Header Style ********************************************* */
 
 /* *************************************** Start Sale Style ******************************************* */
-.hover-icon{
+.hover-icon {
     visibility: hidden;
     position: absolute;
-    top:15%;
+    top: 15%;
     left: -3%;
     color: var(--text-color-black);
     background-color: var(--primary-color);
@@ -219,18 +223,18 @@ nav{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
-.card:hover .hover-icon{
-    visibility:visible;
+.card:hover .hover-icon {
+    visibility: visible;
     left: 2%;
 }
 
 /* Sale Div Styles */
-#sale {
+#sale,
+#sec-sale{
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    align-items: center;
-    margin: 1rem auto;
+    justify-items: center;
 }
 
 /* Card Styles */
@@ -238,7 +242,7 @@ nav{
     position: relative;
     padding: 0.5rem;
     border-radius: 5px;
-    width: 100%; 
+    width: 100%;
     max-width: 300px;
     height: 250px;
     border: 1.5px solid var(--text-color-grey);
@@ -276,7 +280,7 @@ nav{
     height: 44px;
     border: 1px solid var(--text-color-grey);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-                rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 /* Card Content Styles */
@@ -318,6 +322,7 @@ nav{
 }
 
 /* *************************************** End Sale Style ********************************************* */
+
 /* *************************************** Start Footer Style ******************************************* */
 footer{
     background-color: var(--black);
@@ -385,3 +390,205 @@ footer a{
     }
 }
 /* *************************************** End Responsive Style ***************************************** */
+/*
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+ */
+/* *************************************  Start Product Style  ******************************************* */
+#product {
+    display: flex;
+    justify-content: space-between;
+    min-height: 600px;
+    margin-bottom: 8rem;
+    flex-wrap: wrap;
+}
+
+#images-product-container {
+    width: 62%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    overflow: hidden;
+}
+
+#main-product-img {
+    width: 500px;
+    height: 600px;
+}
+
+.product-imgs {
+    width: 200px;
+    height: 138px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+}
+
+#product-content-container {
+    width: 38%;
+}
+
+#main-product-content::after {
+    content: "";
+    border-bottom: 1.5px solid var(--grey);
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.data-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.25rem 0;
+}
+
+.product-info{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.product-info> span{
+    font-weight: 500;
+    font-size: 1rem;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    padding: 0.25rem;
+}
+
+.heart-icon {
+    font-size: 1.5rem;
+    background-color: var(--text-color-grey-light);
+    color: var(--grey);
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--grey);
+}
+
+.quantity-div {
+    display: flex;
+    align-items: center;
+}
+
+.current-quantity {
+    border-radius: 4px;
+    padding: 0.60rem 1.5rem;
+    border-width: 1px 0 1px 0;
+    border-color: var(--black);
+    border-style: solid;
+}
+
+.increasing-btn {
+    color: var(--white);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--secondary-color);
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+
+.increasing-btn:hover {
+    background-color: var(--secondary-color-hover);
+}
+
+.decreasing-btn {
+    padding: 0.75rem 1rem;
+    border: none;
+    color: var(--grey);
+    border-width: 1px;
+    border-color: var(--grey);
+    border-style: solid;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+#delvery-div,
+#return-div {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border: 1px solid;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+#delvery-div i,
+#return-div i{
+    font-size: 2rem;
+}
+/* *************************************  End Product Style  ********************************************* */
+
+/* *************************************  Start Responsive Style  **************************************** */
+@media (max-width: 768px) {
+    #images-product-container {
+        width: 100%;
+        flex-direction: column-reverse;
+        height: 500px;
+    }
+
+    #main-product-img {
+        width: 95%;
+        height: 350px;
+    }
+
+    .product-imgs {
+        width: 23%;
+        height: auto;
+    }
+
+    #product-imgs-div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    #product-content-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #main-product-content {
+        width: 46%;
+    }
+
+    #main-product-content::after {
+        display: none;
+    }
+    
+    #data-product-content{
+        display: inline-block;
+        width: 50%;
+        padding-left: 0.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #product-content-container {
+        flex-direction: column;
+    }
+    #main-product-content,#data-product-content{
+        width: 100%;
+    }
+
+    #main-product-content::after {
+        display: block;
+    }
+}
+
+/* *************************************  End Responsive Style  ****************************************** */
