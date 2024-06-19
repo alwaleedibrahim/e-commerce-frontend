@@ -3,7 +3,7 @@ let data = [];
 let dataSearch = [];
 window.onload = function(){
     let xhr = new XMLHttpRequest();
-    xhr.open('Get','../api/products.json');
+    xhr.open('Get','./api/products.json');
     xhr.onreadystatechange = function (){
         if(xhr.readyState === 4 && xhr.status ===200 ){
             data = JSON.parse(xhr.responseText);
