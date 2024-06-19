@@ -193,7 +193,6 @@ footer{
     background-color: var(--black);
     color: var(--white);
     padding: 0.25rem 0;
-    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
