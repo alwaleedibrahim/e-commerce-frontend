@@ -43,8 +43,48 @@
     </header>
     <!-- <button class="btn-orange">Test button</button> -->
     <!-- ----------------------------------- End Navbar ------------------------------------------- -->
-
+    
     <!-- ----------------------------------- Start Sale Section ----------------------------------- -->
+    <style>
+        #product-bar{
+            background-color: var(--background-color) ;
+            padding: 30px;
+            margin: 10px;
+            border-radius:5px;
+            text-align:center;
+        }
+        #product-bar div{
+            display: inline-block;
+            margin-right: 80px;
+        }
+        select{
+            border: none;
+            background-color: transparent;
+            font-family: "Quicksand";
+            font-size: 16px;
+            padding: 0 30px;
+        }
+    </style>
+    <section id="product-bar">
+        <div> <span id="bar-product-counter">13</span> Items </div>
+        <div> 
+            Sort By 
+            <select name="" id="" onchange="filtterFunction(this.value)">
+                <option value="" selected>RECOMENDED</option>
+                <option value="down" >PRICE (HIGHT TO LOW) </option>
+                <option value="up" >PRICE (LOW TO HIGHT) </option>
+                <option value="best" >BEST RATED </option>
+            </select>
+        </div>
+        <div>
+            Show 
+            <select id="show-product-count" name="count" onchange="saleCard(dataSearch.slice(0,this.value))">
+                <option value="10">10 PRODUCT</option>
+                <option value="15">15 PRODUCT</option>
+                <option value="1000" selected>All PRODUCT</option>
+            </select>
+        </div>
+    </section>
     <section id="sale" class="container">
     </section>
     <!-- ----------------------------------- End Sale Section ------------------------------------- -->
