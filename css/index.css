@@ -9,7 +9,6 @@ body{
     padding: 0;
     font-family:"Quicksand", sans-serif;
     font-size: 16px;
-    min-height: 100vh;
 }
 
 :root{
@@ -39,6 +38,15 @@ li{
 }
 
 /* Responsive Headers */
+h1,
+h2,
+h3,
+h4,
+h5,h6{
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
 h1 {
     font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: bold;
@@ -103,6 +111,14 @@ h6 {
 
 .btn-orange:hover{
     background-color: var(--secondary-color-hover);
+}
+
+.stars-filled{
+    color:gold;
+}
+
+.stars{
+    color: var(--text-color-grey);
 }
 /* *************************************** End Global Style *********************************************** */
 
@@ -188,14 +204,125 @@ nav{
 }
 /* *************************************** End Header Style ********************************************* */
 
+/* *************************************** Start Sale Style ******************************************* */
+.hover-icon{
+    visibility: hidden;
+    position: absolute;
+    top:15%;
+    left: -3%;
+    color: var(--text-color-black);
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.75s ease-in;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.card:hover .hover-icon{
+    visibility:visible;
+    left: 2%;
+}
+
+/* Sale Div Styles */
+#sale {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items: center;
+    margin: 1rem auto;
+}
+
+/* Card Styles */
+.card {
+    position: relative;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 100%; 
+    max-width: 300px;
+    height: 250px;
+    border: 1.5px solid var(--text-color-grey);
+    background-color: var(--background-color);
+}
+
+/* Sale Span Styles */
+.sale {
+    padding: 0.25rem;
+    position: absolute;
+    top: 3%;
+    left: 0;
+    background: var(--secondary-color);
+    color: var(--white);
+    font-size: 0.75rem;
+}
+
+/* Images Container Styles */
+.imagesi-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#main-image {
+    width: 65%;
+    height: 140px;
+}
+
+.images {
+    width: 33%;
+}
+
+.images img {
+    width: 95%;
+    height: 44px;
+    border: 1px solid var(--text-color-grey);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+                rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+/* Card Content Styles */
+.title-card {
+    text-transform: capitalize;
+}
+
+/* Rating Container Styles */
+#stars-div {
+    margin: 0.5rem 0;
+}
+
+/* Price Div Styles */
+.price-div {
+    display: inline-block;
+    width: fit-content;
+}
+
+.sale-price {
+    padding: 0.25rem;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+}
+
+.price {
+    padding: 0.25rem;
+    color: var(--text-color-grey);
+    font-size: 0.75rem;
+    text-decoration: line-through;
+}
+
+/* Cart Button Styles */
+.cart-btn {
+    position: absolute;
+    bottom: 2%;
+    right: 3%;
+    padding: 0.5rem 1.15rem;
+}
+
+/* *************************************** End Sale Style ********************************************* */
 /* *************************************** Start Footer Style ******************************************* */
 footer{
     background-color: var(--black);
     color: var(--white);
     padding: 0.25rem 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 footer a{
