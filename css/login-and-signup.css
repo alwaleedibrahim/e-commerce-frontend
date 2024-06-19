@@ -1,8 +1,40 @@
-main>img {
-    max-width: 40vw;
+main {
     display: flex;
+    flex-direction: row;
+    margin: 3%;
 }
 
-main>form {
+main>img {
+    width: 35%;
+    margin: auto 0;
+}
+
+.form-container {
     display: flex;
+    flex-direction: column;
+    margin: auto 4rem;
+}
+.form-container>form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    margin: 0.5rem 0rem;
+    outline: none;
+    border: none;
+    border-bottom: 0.1rem solid var(--text-color-grey);
+    padding: 0.5rem 0.1rem;
+    color: var(--text-color-black);
+    background-color: transparent;
+}
+
+.input-field::placeholder {
+    color: var(--text-color-grey);
+}
+
+#submit-btn {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    width: fit-content;
 }

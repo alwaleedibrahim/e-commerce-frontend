@@ -3,8 +3,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in to Exclusive</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/login-and-signup.css">
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/login-and-signup.css" />
   </head>
   <body>
     <!-- ----------------------------------- Start Navbar ----------------------------------------- -->
@@ -49,20 +49,31 @@
     <!-- ----------------------------------- End Navbar ------------------------------------------- -->
 
     <main>
-      <img src="./images/side-image.png">
-      <div>
-        <h1>Log in to Exclusive</h1>
-        <p>Enter your details below</p>
+      <img src="./images/side-image.png" />
+      <div class="form-container">
+        <div>
+          <h1>Log in to Exclusive</h1>
+          <p>Enter your details below</p>
+        </div>
+        <div id="error-container"></div>
+        <form id="login-form">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="input-field"
+            placeholder="Your email"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="input-field"
+            placeholder="Password"
+          />
+          <input type="submit" value="Log In" class="btn btn-orange" id="submit-btn"/>
+        </form>
       </div>
-      <div id="error-container"></div>
-      <form id="login-form">
-        <label for="email">Your email</label>
-        <input type="email" name="email" id="email" />
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" />
-        <input type="submit" value="Login" />
-        <a>Forget Password?</a>
-      </form>
     </main>
     <!-- ----------------------------------- Start Footer ----------------------------------------- -->
     <footer>
