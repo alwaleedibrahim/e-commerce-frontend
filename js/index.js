@@ -20,7 +20,8 @@ window.onload = function(){
                 }
             }
             else {
-                let searchVal = location.search.split('search=')[1].split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
+                let search = location.search.split('search=')[1]? location.search.split('search=')[1] : ""
+                let searchVal = search.split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
                 searchProduct(searchVal,false)
             }
         }
