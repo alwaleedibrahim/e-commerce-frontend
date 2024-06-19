@@ -35,7 +35,7 @@
                     <i class="fas fa-search"></i>
                 </div>
                 <i class="fa-regular fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i onclick='window.open("/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
             </div>
         </nav>
     </header>
@@ -265,7 +265,10 @@
         const buyBtn = document.createElement("button");
         buyBtn.className = "buy-btn";
         buyBtn.innerText = "Buy Now";
-        buyBtn.classList.add("btn-orange")
+        buyBtn.classList.add("btn-orange");
+        buyBtn.addEventListener("click", ()=>{
+            window.open("/cart.html", "_self");
+        });
         dataDiv.appendChild(buyBtn);
 
         const faveIcon = document.createElement("i");

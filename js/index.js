@@ -31,6 +31,16 @@ window.onload = function () {
     xhr.send();
 
 }
+
+// //////////////////////////////////////////// Cookies Functions ///////////////////////////////// //
+function productCookies(data , productWindow){
+    let date = new Date();
+    date.setDate(date.getDate() + 2);
+    let expires = "expires=" + date.toUTCString();
+    let product = data;
+    productWindow.document.cookie = 'product=' + JSON.stringify(product) + ";" + expires + ";path=/";
+}
+
 // //////////////////////////////////////////// Create Sale Card ///////////////////////////////// //
 function card(data, div) {
     let cards = data;
