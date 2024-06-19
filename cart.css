@@ -1,0 +1,410 @@
+/* *************************************** Start Global Style ********************************************* */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family:"Quicksand", sans-serif;
+    font-size: 16px;
+    min-height: 100vh;
+}
+
+:root{
+    --primary-color:#ffffff;
+    --secondary-color:#DB4444;
+    --background-color:#F5F5F5;
+    --break-color:#00FF66;
+
+    --secondary-color-hover:#E07575;
+
+    --text-color-black:#000000;
+    --text-color-grey:#7D8184;
+    --text-color-grey-light:#fafafa;
+
+    --black:#000000;
+    --grey:#363738;
+    --white:#ffffff;
+}
+
+
+a{
+    text-decoration: none;
+
+} 
+
+li{
+    list-style: none;
+}
+
+/* Responsive Headers */
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: bold;
+}
+
+h2 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-weight: bold;
+}
+
+h3 {
+    font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+    font-weight: 600;
+}
+
+h4 {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 500;
+}
+
+h5 {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+    font-weight: 500;
+}
+
+h6 {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    font-weight: 400;
+}
+
+.label {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    font-weight: 500;
+    color: var(--text-color-grey-light);
+}
+
+.btn {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+    font-weight: 500;
+}
+
+/* resuable css */
+.container{
+    max-width: 1170px;
+    padding-top: clamp(0.25rem, 2vw, 0.5rem);
+    padding-inline: clamp(0.5rem, 2vw, 0.1rem);
+    margin: 0 auto;
+}
+
+.section-headers{
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    border-right: 9px solid var(--secondary-color);
+}
+
+.btn-orange{
+    color: var(--white);
+    background-color: var(--secondary-color);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+}
+
+.btn-orange:hover{
+    background-color: var(--secondary-color-hover);
+}
+/* *************************************** End Global Style *********************************************** */
+
+/* *************************************** Start Header Style ********************************************* */
+header{
+    border-bottom: 3px solid var(--background-color);
+}
+/* Ads */
+#ads{
+    text-align: center;
+    background-color: var(--black);
+    padding: 0.25rem 0;
+}
+
+#ads-span{
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+/* Nav */
+#logo{
+    padding: 0.25rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    width: fit-content;
+}
+
+#logo span{
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav-list{
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link a{
+    color: var(--text-color-black);
+    font-weight: 500;
+}
+
+#nav-list .nav-link i{
+    display: none;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+#nav-list .nav-link i:hover,
+#nav-list .nav-link a:hover{
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    font-weight: 800;
+    transform: scale(1.2);
+    transition: all 0.3s linear;
+}
+
+#header-icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#search-div{
+    background-color: var(--background-color);
+    border-radius: 5px;
+    padding-right: 0.5rem;
+    cursor: pointer;
+}
+
+#search{
+    outline: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+}
+/* *************************************** End Header Style ********************************************* */
+
+/* *************************************** Start Footer Style ******************************************* */
+footer{
+    background-color: var(--black);
+    color: var(--white);
+    padding: 0.25rem 0;
+    /* position: absolute; */
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+footer a{
+    color: var(--white);
+}
+
+#footer-content{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    margin: 1rem auto;
+    flex-wrap: wrap;
+}
+
+#footer-content > div{
+    max-width: 20%;
+}
+
+#footer-content > div ul{
+    padding: 0;
+}
+
+#footer-content > div ul li{
+    margin-bottom: 0.75rem;
+}
+
+#copy-right{
+    text-align: center;
+    color: var(--text-color-grey);
+}
+
+#social-links{
+    display: flex;
+    gap: 1rem;
+}
+/* *************************************** End Footer Style ********************************************* */
+
+/* *************************************** Start Responsive Style *************************************** */
+@media (max-width: 768px) {
+    #nav-list{
+         position: fixed; 
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--background-color);
+        padding: 1rem;
+        justify-content: space-around;
+        width: 75%;
+        margin: 0 auto;
+        border-radius: 5px;
+        z-index: 1000;
+    }
+
+    #nav-list .nav-link i{
+        display: block;
+    }
+
+    .nav-link a{
+        display: none;
+    }
+}
+/* *************************************** End Responsive Style ***************************************** */
+
+/* ************************************** start of styles for Products *********************************** */
+
+ #home-word{
+color: #7D8184;
+margin-left: 15px;
+}
+ 
+#specifers_containter{
+    margin: 10px;
+    border: #6d1919 100px;
+    height: 80px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+  
+}
+
+.item_specifers{
+  display: flex;
+  
+}
+
+.item_specifers > li {
+    margin-right: 20rem;
+}  
+ 
+
+#white-buttons-container{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-top: 20px;
+}
+
+.left{
+    display: flex;
+    gap: 10px;
+    margin-left: 50px;
+}
+
+.right{
+   margin-right: 50px;
+}
+
+.btn-white{
+    background-color: white; 
+    width: 180px;
+    height: 50px;
+    border-radius: 5px;
+    border-width: 1px;
+    
+} 
+  
+
+.btn-white:hover{
+    background-color: #e8ebee;
+}
+
+.coupon-input{
+    margin-left: 50px;
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#coupon{
+    margin-top: 50px;
+}
+
+.cart-container {
+    display: flex;
+    justify-content: flex-end; 
+     padding: 10px; 
+     margin-top: 20px;
+}
+
+.cart-total {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 400px;
+     padding: 20px;
+    box-sizing: border-box;
+     margin-top: 10px;
+}
+
+.cart-total h3, .cart-total h5 {
+     margin: 10px 0; 
+} 
+
+.h3, h5 {
+    
+    border-bottom:1px solid black;
+}
+
+.cart-total button {
+   text-align: center;
+   width: 200px;
+
+} 
+
+
+.item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+}
+
+.item-spacing {
+    flex: 1; 
+    text-align: center; 
+    padding: 10px; 
+    margin-right: 250px;
+    
+}
+
+.item-spacing img {
+    max-width: 100%; 
+    height: auto;
+}
+
+.item-spacing p {
+    margin: 0; 
+}
+
+.item-spacing input {
+    width: 50px; 
+}
+
+
+input[type="number"]{
+    width: 80px; 
+    padding: 8px; 
+    border: 1px solid #151313; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    font-size: 16px; 
+    outline: none; 
+    
+}
