@@ -1,16 +1,15 @@
-
+// Function to request products from a JSON file
 function requestProducts() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'products.json', true);
+    xhr.open('GET', 'products.json');
 
     xhr.onload = function() {
         if (this.status >= 200 && this.status < 300) {
             let products = JSON.parse(this.responseText);
             let productContainer = document.querySelector('.cart-items');
+            let savedCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-           
             products.forEach(product => {
-              
                 let cartItemElement = document.createElement('div');
                 cartItemElement.classList.add('cart-item', 'cart-row');
 
@@ -24,22 +23,28 @@ function requestProducts() {
                         <button class="remove-item">Remove</button>
                     </div>`;
 
-                // Append cart item to cart container
+              
                 productContainer.appendChild(cartItemElement);
 
-                //update subtotal when quantity changes
+                
                 let quantityInput = cartItemElement.querySelector('input[type="number"]');
                 quantityInput.addEventListener('change', function() {
                     updateSubtotal(cartItemElement, product);
                     updateCartTotal();
                 });
 
-                // to remove item from cart
                 let removeButton = cartItemElement.querySelector('.remove-item');
                 removeButton.addEventListener('click', function() {
                     cartItemElement.remove();
                     updateCartTotal();
                 });
+
+               
+                let savedItem = savedCart.find(item => item.productName === product.name);
+                if (savedItem) {
+                    quantityInput.value = savedItem.quantity;
+                    updateSubtotal(cartItemElement, product);
+                }
             });
 
             updateCartTotal();
@@ -51,14 +56,15 @@ function requestProducts() {
     xhr.send();
 }
 
-// Function to update subtotal of a cart item based on quantity
 function updateSubtotal(cartItemElement, product) {
     let quantity = parseInt(cartItemElement.querySelector('input[type="number"]').value);
     let subtotal = quantity * product.price;
     cartItemElement.querySelector('.subtotal').innerText = `$${subtotal}`;
+
+    saveCartToStorage();
 }
 
-// Function to update the total price of the cart
+
 function updateCartTotal() {
     let cartItems = document.querySelectorAll('.cart-item');
     let total = 0;
@@ -67,10 +73,25 @@ function updateCartTotal() {
         total += subtotal;
     });
 
-    document.querySelector('.subtotal').innerText = `$${total}`;
+    document.querySelector('.subtotal').innerText = `$${total.toFixed(2)}`;
+    saveCartToStorage();
 }
 
-// Initialize the cart when the page loads
+// save cart data to localStorage
+function saveCartToStorage() {
+    let cartItems = document.querySelectorAll('.cart-item');
+    let cart = [];
+    cartItems.forEach(cartItem => {
+        let productName = cartItem.querySelector('h4').innerText;
+        let price = parseFloat(cartItem.querySelector('.subtotal').innerText.replace('$', ''));
+        let quantity = parseInt(cartItem.querySelector('input[type="number"]').value);
+        cart.push({ productName, price, quantity });
+    });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
     requestProducts();
 });
