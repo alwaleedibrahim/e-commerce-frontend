@@ -38,3 +38,9 @@ main>img {
     padding: 0.7rem 1.5rem;
     width: fit-content;
 }
+
+#error-container {
+    margin-top: 1rem;
+    color: #f84f4f;
+
+}
