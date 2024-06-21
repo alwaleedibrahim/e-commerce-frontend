@@ -7,21 +7,23 @@ function handleLogin(event) {
   let password = event.target.password.value;
 
   let users = localStorage.getItem("users");
-  users = JSON.parse(users);
-
-  for (user of users) {
-    if (user.email == email && user.password == password) {
-      addToCookies("email", email);
-      location.assign("./index.html");
-      return;
+  if (users) {
+    users = JSON.parse(users);
+  
+    for (user of users) {
+      if (user.email == email && user.password == password) {
+        addToCookies("email", email);
+        location.assign("./index.html");
+        return;
+      }
     }
   }
 
   showError("Email or password is incorrect");
 }
 
-// const logoutForm = document.getElementById("logout-form");
-// logoutForm.addEventListener("submit", handleLogout);
+const logoutForm = document.getElementById("logout-form");
+logoutForm.addEventListener("submit", handleLogout);
 
 function handleLogout(event) {
     event.preventDefault();
