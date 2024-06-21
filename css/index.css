@@ -106,6 +106,27 @@ h6 {
     margin-bottom: 3rem;
 }
 
+.section-title-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.steps > button{
+    border: none;
+    border-radius: 50%;
+    background-color: var(--text-color-grey-light);
+    padding: 0.5rem 0.65rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.steps > button:hover{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    scale: (1.1);
+}
+
 .btn-orange{
     color: var(--white);
     background-color: var(--secondary-color);
@@ -411,6 +432,211 @@ footer a{
     *
     *
  */
+/* *************************************  Start Home Style  ******************************************* */
+/* Start main section */
+#main {
+    background-color: var(--black);
+    max-height: 75vh;
+    width: 85vw;
+    border-radius: 5px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.main-div {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+#main-content {
+    width: 50%;
+    color: var(--white);
+    padding: 4rem;
+}
+
+#main-img-container {
+    width: 50%;
+    padding: 1rem 2rem;
+}
+
+.main-img {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+}
+
+#main-title {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+#main-title i {
+    font-size: 3.5rem;
+}
+
+#main-title span{
+    background-color: var(--white);
+    color: var(--black);
+    padding: 0.5rem;
+    transform: skewY(-2deg);
+    border-radius: 70%;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+#main-content h1 {
+    margin: 1rem 0;
+    font-size: 4rem;
+}
+
+#main-btn {
+    display: flex;
+    align-items: center;
+}
+
+#main-btn button {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: var(--white);
+    border-bottom: 1px solid var(--white);
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+}
+
+.swiper-pagination > span:not([aria-current="true"]) {
+    background-color: var(--white);
+    opacity: 0.6;
+}
+
+.swiper-pagination > span[aria-current="true"] {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--white);
+    border-radius: 50%;
+}
+
+#swiper {
+    height: 5vh;
+}
+/* End main section */
+
+/* Start Flash Sale Section */
+#flash-sale{
+    margin: 4rem auto;
+}
+.btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+/* End Flash Sale Section */
+
+/* Start Feature Section */
+#features{
+    margin: 4rem auto;
+}
+
+#features-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 1rem 0;
+    color: var(--white);
+    margin: 2rem auto;
+}
+
+.feature-card{
+    position: relative;
+}
+
+#feature-contnet-left{
+    background:url('/images/feature1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 100%;
+}
+
+#feature-contnet-right{
+    width: 50%;
+    height: 100%;
+}
+
+#feature-contnet-right-top{
+    background:url('/images/feature2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 50%;
+}
+
+.feature-card-content{
+    position: absolute;
+    bottom: 0.25rem;
+    left: 0.25rem;
+    width: 50%;
+    padding: 1rem;
+}
+
+.feature-card-content > button{
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: var(--white);
+    border-bottom: 1px solid var(--white);
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+}
+
+#feature-contnet-right-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    height: 50%;
+}
+
+#feature-contnet-right-bottom-one,
+#feature-contnet-right-bottom-two{
+    width: 48%;
+    height: 90%;
+}
+
+#feature-contnet-right-bottom-one{
+    background:url('/images/feature3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#feature-contnet-right-bottom-two{
+    background:url('/images/feature4.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* *************************************  End Home Style  ******************************************* */
+/*
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+ */
+
 /* *************************************  Start Product Style  ******************************************* */
 #product {
     display: flex;
