@@ -103,7 +103,7 @@ h6 {
     border-left: 19px solid var(--secondary-color);
     height: fit-content;
     border-radius: 5px;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .section-title-container{
@@ -531,6 +531,65 @@ footer a{
 }
 /* End Flash Sale Section */
 
+/* Start categories Section */
+#categories-icons{
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.category-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 0.5rem;
+    flex-direction: column;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
+
+.category-icon i{
+    font-size: 1.5rem;
+}
+.category-icon:hover{
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--white);
+}
+/* End categories Section */
+
+/* Start Best Selling Section */
+#best-selling{
+    margin: 4rem auto;
+}
+
+#best-selling-cards{
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-items: center;
+    margin: 2rem auto;
+}
+/* End Best Selling Section */
+
+/* Start Explore Section */
+#explore-products{
+    margin: 4rem auto;
+}
+
+#explore-products-cards{
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+    margin: 2rem auto;
+}
+/* End Explore Section */
+
+
 /* Start Feature Section */
 #features{
     margin: 4rem auto;
@@ -565,7 +624,7 @@ footer a{
 
 #feature-contnet-right-top{
     background:url('/images/feature2.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
     height: 50%;
@@ -599,21 +658,46 @@ footer a{
 
 #feature-contnet-right-bottom-one,
 #feature-contnet-right-bottom-two{
-    width: 48%;
+    width: 50%;
     height: 90%;
 }
 
 #feature-contnet-right-bottom-one{
     background:url('/images/feature3.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
 #feature-contnet-right-bottom-two{
     background:url('/images/feature4.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
+
+/* feature tabs */
+#features-tabs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2rem;
+}
+
+#features-tabs .feature-tab{
+    width: 25%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.feature-tab i{
+    font-size: 1.5rem;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 50%;
+    padding: 0.65rem;
+    border: 10px solid #bebebe;
+    margin-bottom: 0.5rem;
+}
+/* End Feature Section */
 /* *************************************  End Home Style  ******************************************* */
 /*
     *

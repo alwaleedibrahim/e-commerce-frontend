@@ -108,7 +108,7 @@
         </div>
 
         <div class="btn-container">
-            <button id="flash-btn" class="btn-orange">View All Products</button>
+            <button id="flash-btn" class="btn-orange all-products">View All Products</button>
         </div>
     </section>
 
@@ -129,6 +129,25 @@
             </div>
         </div>
         <div id="categories-icons">
+            <div class="category-icon">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span class="category-name">Phones</span>
+            </div>
+
+            <div class="category-icon">
+                <i class="fa-solid fa-computer"></i>
+                <span class="category-name">Computers</span>
+            </div>
+
+            <div class="category-icon">
+                <i class="fa-solid fa-tv"></i>
+                <span class="category-name">Televisions</span>
+            </div>
+
+            <div class="category-icon">
+                <i class="fa-solid fa-book"></i>
+                <span class="category-name">Books</span>
+            </div>
         </div>
     </section>
     <!-- ----------------------------------- End categories ------------------------------------ -->
@@ -138,7 +157,7 @@
         <h3 class="section-headers">This Month</h3>
         <div class="section-title-container">
             <h1 class="section-title">Best Selling Products</h1>
-            <button id="best-selling-btn" class="btn-orange">View</button>
+            <button id="best-selling-btn" class="btn-orange all-products">View</button>
         </div>
 
         <div id="best-selling-cards">
@@ -148,7 +167,7 @@
 
     <!-- ----------------------------------- End Start Best Selling ------------------------------- -->
 
-    <!-- ----------------------------------- Start Explore Products ------------------------------------- -->
+    <!-- ----------------------------------- Start Explore Products ------------------------------- -->
     <section id="explore-products" class="container">
         <h3 class="section-headers">Our Products</h3>
         <div class="section-title-container">
@@ -168,7 +187,7 @@
         </div>
 
         <div class="btn-container">
-            <button id="explore-products-btn" class="btn-orange">View All Products</button>
+            <button id="explore-products-btn" class="btn-orange all-products">View All Products</button>
         </div>
     </section>
 
@@ -216,6 +235,34 @@
                     </div>
     
                 </div>
+            </div>
+        </div>
+
+        <div id="features-tabs">
+            <div class="feature-tab">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h5 style="font-weight: 600;">
+                    FREE AND FAST DELIVERY
+                </h5>
+                <p style="font-size: 0.75rem;">
+                    Free delivery for all orders over $140
+                </p>
+            </div>
+
+            <div class="feature-tab">
+                <i class="fa-solid fa-headset"></i>
+                <h5 style="font-weight: 600;">
+                    24/7 CUSTOMER SERVICE
+                </h5>
+                <p style="font-size: 0.75rem;">Friendly 24/7 customer support</p>
+            </div>
+
+            <div class="feature-tab">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h5 style="font-weight: 600;">
+                    MONEY BACK GUARANTEE
+                </h5>
+                <p style="font-size: 0.75rem;">We reurn money within 30 days</p>
             </div>
 
         </div>
@@ -288,8 +335,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // ////////////////////////////////// Swiper Function //////////////////////////////// //
         const swiper = new Swiper('.swiper', {
-            // modules: [Pagination, Navigation],
             direction: 'horizontal',
             loop: true,
             pagination: {
@@ -297,6 +344,14 @@
                 clickable: true
             },
         });
+
+        // ////////////////////////////////// Button Function //////////////////////////////// //
+        const allProductsBtn = document.querySelectorAll(".all-products");
+        allProductsBtn.forEach((btn)=>{
+            btn.addEventListener(("click"), ()=>{
+                window.open('index.html', '_self')
+            })
+        })
     </script>
     <script src="./js/index.js"></script>
 </body>

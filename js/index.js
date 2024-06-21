@@ -21,6 +21,10 @@ window.onload = function () {
             } else if (location.pathname == '/product.html') {
                 secSaleCard(data);
             }
+            else if (location.pathname == '/home.html') {
+                homeCard(data);
+                bestSellingCard(data);
+            }
             else {
                 let search = location.search.split('search=')[1] ? location.search.split('search=')[1] : ""
                 let searchVal = search.split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
@@ -176,6 +180,21 @@ function secSaleCard(data) {
     card(cards, secSaleDiv);
 }
 
+const exploreDiv = document.getElementById("explore-products-cards");
+
+function homeCard(data) {
+    let cards = data.television.slice(0, 6);
+    card(cards, exploreDiv);
+}
+
+const bestSellingDiv = document.getElementById("best-selling-cards");
+
+function bestSellingCard(data) {
+    let cards = data.mobiles.slice(0, 4);
+    card(cards, bestSellingDiv);
+}
+
+
 // ////////////////////////////////////////// Card Functions /////////////////////////////////////// //
 let defaultQuantity = 0;
 
@@ -232,11 +251,8 @@ function saleCard(data) {
     if (dataSearch.length === 0) {
         dataSearch = data;
     }
-
-    console.log(data);
     document.getElementById('bar-product-counter').innerHTML = data.length
     saleDiv.innerHTML = '';
-
     card(data, saleDiv)
 }
 
@@ -461,4 +477,18 @@ productRoles.innerHTML = `
 dataProductContent.appendChild(productRoles);
 
 
+// //////////////////////////////////////////////////////////////////////////////////////////////////////// //
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// /////////////////////////////////////////////// Start Home Code //////////////////////////////////////// //
+// /////////////////////////////////////////////// End Home Code //////////////////////////////////////// //
 
