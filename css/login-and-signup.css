@@ -40,7 +40,7 @@ main>img {
 }
 
 #error-container {
-    padding: 0.7rem 0.5rem;
-    width: fit-content;
-    background-color: #ffdddd;
+    margin-top: 1rem;
+    color: #f84f4f;
+
 }
