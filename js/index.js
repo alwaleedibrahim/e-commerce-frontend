@@ -18,7 +18,12 @@ window.onload = function () {
                     let searchVal = location.search.split('search=')[1].split("&")[0];
                     searchProduct(searchVal, true)
                 }
-            } else if (location.pathname == '/product.html') {
+            } 
+            else if (location.pathname == '/category.html'){
+                let cat = location.search.split('cat=')[1].split("&")[0];
+                card(data[cat],document.getElementById("sale"))
+            }
+            else if (location.pathname == '/product.html') {
                 secSaleCard(data);
             }
             else if (location.pathname == '/home.html') {
@@ -490,5 +495,8 @@ dataProductContent.appendChild(productRoles);
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
 // /////////////////////////////////////////////// Start Home Code //////////////////////////////////////// //
+
+
+
 // /////////////////////////////////////////////// End Home Code //////////////////////////////////////// //
 
