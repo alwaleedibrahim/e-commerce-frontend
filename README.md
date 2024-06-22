@@ -23,7 +23,7 @@ Check out our live demo [here](https://alwaleedibrahim.github.io/e-commerce-fron
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository: 
    ```sh
    git clone https://github.com/alwaleedibrahim/e-commerce-frontend.git
    ```
