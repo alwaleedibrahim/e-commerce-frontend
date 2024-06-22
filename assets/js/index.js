@@ -16,11 +16,9 @@ window.onload = function () {
             }
             else if (location.pathname.includes('/pages/product.html')) {
                 if(localStorage.getItem("product")){
-
                     secSaleCard(data);
-                    showProductPage();
                 }else{
-                    location.href = "/pages/index.html"
+                    location.href = "./../pages/index.html"
                 }
             }
             else if (location.pathname.includes('/pages/home.html')) {
