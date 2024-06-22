@@ -5,47 +5,47 @@ function requestProducts() {
 
     xhr.onload = function() {
         if (this.status >= 200 && this.status < 300) {
-            let products = JSON.parse(this.responseText);
+            let productsData = JSON.parse(this.responseText);
             let productContainer = document.querySelector('.cart-items');
             let savedCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            products.forEach(product => {
-                let cartItemElement = document.createElement('div');
-                cartItemElement.classList.add('cart-item', 'cart-row');
-
-                cartItemElement.innerHTML = `
-                    <img src="${product.image}">
-                    <div class="cart-item-details">
-                        <h4>${product.name}</h4>
-                        <p>$${product.price}</p>
-                        <input type="number" value="1" min="1" max="20">
-                        <p class="subtotal">$${product.price}</p>
-                        <button class="remove-item">Remove</button>
-                    </div>`;
-
-              
-                productContainer.appendChild(cartItemElement);
-
+            for (let category in productsData) {
+                let categoryArray = productsData[category];
                 
-                let quantityInput = cartItemElement.querySelector('input[type="number"]');
-                quantityInput.addEventListener('change', function() {
-                    updateSubtotal(cartItemElement, product);
-                    updateCartTotal();
-                });
+                for (let i = 0; i < categoryArray.length; i++) {
+                    let product = categoryArray[i];
+                    let savedItem = savedCart.find(item => item.productName === product.name);
 
-                let removeButton = cartItemElement.querySelector('.remove-item');
-                removeButton.addEventListener('click', function() {
-                    cartItemElement.remove();
-                    updateCartTotal();
-                });
+                    if (savedItem) {
+                        let cartItemElement = document.createElement('div');
+                        cartItemElement.classList.add('cart-item', 'cart-row');
 
-               
-                let savedItem = savedCart.find(item => item.productName === product.name);
-                if (savedItem) {
-                    quantityInput.value = savedItem.quantity;
-                    updateSubtotal(cartItemElement, product);
+                        cartItemElement.innerHTML = `
+                            <img src="${product.image_key}">
+                            <div class="cart-item-details">
+                                <h4>${product.name}</h4>
+                                <p>$${product.price}</p>
+                                <input type="number" value="${savedItem.quantity}" min="1" max="20">
+                                <p class="subtotal">$${(savedItem.quantity * product.price).toFixed(2)}</p>
+                                <button class="remove-item">Remove</button>
+                            </div>`;
+
+                        productContainer.appendChild(cartItemElement);
+
+                        let quantityInput = cartItemElement.querySelector('input[type="number"]');
+                        quantityInput.addEventListener('change', function() {
+                            updateSubtotal(cartItemElement, product, quantityInput.value);
+                            updateCartTotal();
+                        });
+
+                        let removeButton = cartItemElement.querySelector('.remove-item');
+                        removeButton.addEventListener('click', function() {
+                            cartItemElement.remove();
+                            updateCartTotal();
+                        });
+                    }
                 }
-            });
+            }
 
             updateCartTotal();
         } else {
@@ -56,15 +56,16 @@ function requestProducts() {
     xhr.send();
 }
 
-function updateSubtotal(cartItemElement, product) {
-    let quantity = parseInt(cartItemElement.querySelector('input[type="number"]').value);
+// Function to update subtotal for a cart item
+function updateSubtotal(cartItemElement, product, newQuantity) {
+    let quantity = parseInt(newQuantity);
     let subtotal = quantity * product.price;
-    cartItemElement.querySelector('.subtotal').innerText = `$${subtotal}`;
+    cartItemElement.querySelector('.subtotal').innerText = `$${subtotal.toFixed(2)}`;
 
     saveCartToStorage();
 }
 
-
+// Function to update total cost of items in the cart
 function updateCartTotal() {
     let cartItems = document.querySelectorAll('.cart-item');
     let total = 0;
@@ -73,11 +74,11 @@ function updateCartTotal() {
         total += subtotal;
     });
 
-    document.querySelector('.subtotal').innerText = `$${total.toFixed(2)}`;
+    document.querySelector('.total').innerText = `$${total.toFixed(2)}`;
     saveCartToStorage();
 }
 
-// save cart data to localStorage
+// Function to save cart data to localStorage
 function saveCartToStorage() {
     let cartItems = document.querySelectorAll('.cart-item');
     let cart = [];
@@ -91,7 +92,7 @@ function saveCartToStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-
+// Event listener when DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
     requestProducts();
 });
