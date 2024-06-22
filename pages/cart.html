@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
+    <link rel="stylesheet" href="./../assets/css/index.css">
     <link rel="stylesheet" href="./../assets/css/cart.css"/>
     <link
       rel="stylesheet"
@@ -49,7 +50,7 @@
           </div>
           <i class="fa-regular fa-heart"></i>
           <i id="cart-icon" onclick='window.open("./../pages/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
-          <span id="cart-counter">0</span>
+          <span id="cart-counter"></span>
           <i class="fa-regular fa-user"></i>
         </div>
       </nav>
@@ -70,18 +71,18 @@
   
     </section>
     <div class="item">
-     <div class="item-spacing"> 
-         <img width="200px" height="100px" src="./../assets/images/tv.jpg" alt="tv image">
+     <!-- <div class="item-spacing"> 
+         <img width="200px" height="100px" src="./../assets/images/tv.jpg" alt="tv image"> 
      </div>
      <div class="item-spacing">
-         <p>$10450</p>
+         <p></p>
      </div>
      <div id="quant-num" class="item-spacing">
-         <input type="number" value="1" min="1" max="10">
+          <input type="number" value="1" min="1" max="10"> 
      </div>
      <div class="item-spacing">
-         <p>$10450</p>
-     </div>
+         <p></p>
+     </div> -->
    </div>
 
     
@@ -104,10 +105,10 @@
 
     <div class="cart-container">
       <div class="cart-total">
-      <h3>Cart Total</h3>
-      <h5>Subtotal</h5>
-      <h5>Shipping</h5>
-      <h5>Total</h5>
+      <h3>Cart Total<span id="cart-Fulltotal"></span></h3>
+      <h5>Subtotal<span id="cart-FullSubtotal"></span></h5>
+      <h5>Shipping <span style="margin-left: 250px;" id="Shipping">Free</span></h5>
+      <h5>Total <span id="cart-Fulltotal-sm"></span></h5>
       <button class="btn-orange">Process to check out</button>
     </div>
      </div>
