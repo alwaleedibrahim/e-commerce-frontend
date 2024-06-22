@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -37,15 +37,15 @@
                   </form>
                 </div>
                 <i class="fa-regular fa-heart"></i>
-                <i onclick='window.open("/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
+                <i onclick='window.open("./pages/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
                 <div>
                     <span class="user-icon-container">
                         <i class="fa-regular fa-user"></i>
                     </span>
                     <div class="user-options">
                         <ul>
-                            <li id="login-option"><a href="./login.html">Login</a></li>
-                            <li id="signup-option"><a href="./registration.html">Sign Up</a></li>
+                            <li id="login-option"><a href="./pages/login.html">Login</a></li>
+                            <li id="signup-option"><a href="./pages/signup.html">Sign Up</a></li>
                             <li id="logout-option">Logout</li>
                         </ul>
                     </div>
@@ -57,7 +57,6 @@
     <!-- ----------------------------------- End Navbar ------------------------------------------- -->
     <section id="offer-section">
         <div class="offer-container">
-            <img src="./images/offer.jpg">
             <div class="offer-text">
                 <h3>categories</h3>
                 <h1>Enhance your music experience</h1>
@@ -190,8 +189,8 @@
         </div>
     </footer>
     <!-- ----------------------------------- End Footer ------------------------------------------- -->
-    <script src="./js/index.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/login.js"></script>
 </body>
 
 </html>

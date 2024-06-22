@@ -10,7 +10,7 @@ window.onload = function () {
             if (location.pathname == '/index.html' && location.search == "") {
                 saleCard(data.laptop.slice(0, 10));
             }
-            else if (location.pathname === '/404.html') {
+            else if (location.pathname === '/pages/404.html') {
                 if (location.search == "") {
                     let searchVal = '';
                     searchProduct(searchVal, true)
@@ -19,14 +19,14 @@ window.onload = function () {
                     searchProduct(searchVal, true)
                 }
             } 
-            else if (location.pathname == '/category.html'){
+            else if (location.pathname == '/pages/category.html'){
                 let cat = location.search.split('cat=')[1].split("&")[0];
                 card(data[cat],document.getElementById("sale"))
             }
-            else if (location.pathname == '/product.html') {
+            else if (location.pathname == '/pages/product.html') {
                 secSaleCard(data);
             }
-            else if (location.pathname == '/home.html') {
+            else if (location.pathname == '/pages/home.html') {
                 homeCard(data);
                 bestSellingCard(data);
             }
@@ -453,7 +453,7 @@ buyBtn.className = "buy-btn";
 buyBtn.innerText = "Buy Now";
 buyBtn.classList.add("btn-orange");
 buyBtn.addEventListener("click", () => {
-    window.open("/cart.html", "_self");
+    window.open("/pages/cart.html", "_self");
 });
 dataDiv.appendChild(buyBtn);
 

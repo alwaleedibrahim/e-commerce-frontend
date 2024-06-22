@@ -65,7 +65,7 @@ function handleRegisteration(user) {
   }
   users.push(user);
   localStorage.setItem("users", JSON.stringify(users));
-  location.assign("./login.html")
+  location.assign("/pages/login.html")
 }
 
 function showError(msg) {

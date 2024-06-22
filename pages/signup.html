@@ -2,9 +2,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log in to Exclusive</title>
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/login-and-signup.css" />
+    <title>Sign up to Exclusive</title>
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/login-and-signup.css" />
   </head>
   <body>
     <!-- ----------------------------------- Start Navbar ----------------------------------------- -->
@@ -49,14 +49,21 @@
     <!-- ----------------------------------- End Navbar ------------------------------------------- -->
 
     <main>
-      <img src="./images/side-image.png" />
+      <img src="/assets/images/side-image.png" />
       <div class="form-container">
         <div>
-          <h1>Log in to Exclusive</h1>
+          <h1>Sign up to Exclusive</h1>
           <p>Enter your details below</p>
         </div>
         <div id="error-container"></div>
-        <form id="login-form">
+        <form id="registration-form">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Your name"
+            class="input-field"
+          />
           <input
             type="email"
             name="email"
@@ -65,13 +72,27 @@
             placeholder="Your email"
           />
           <input
+            type="tel"
+            name="mobile-number"
+            id="mobile-number"
+            class="input-field"
+            placeholder="Mobile number"
+          />
+          <input
             type="password"
             name="password"
             id="password"
             class="input-field"
             placeholder="Password"
           />
-          <input type="submit" value="Log In" class="btn btn-orange" id="submit-btn"/>
+          <input
+            type="password"
+            name="re-password"
+            id="re-password"
+            class="input-field"
+            placeholder="Re-enter password"
+          />
+          <input type="submit" value="Create Account" class="btn btn-orange" id="submit-btn"/>
         </form>
       </div>
     </main>
@@ -154,6 +175,6 @@
       </div>
     </footer>
     <!-- ----------------------------------- End Footer ------------------------------------------- -->
-    <script src="./js/login.js"></script>
+    <script src="/assets/js/registration.js"></script>
   </body>
 </html>
