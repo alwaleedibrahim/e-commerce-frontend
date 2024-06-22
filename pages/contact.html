@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign up to Exclusive</title>
+    <title>Contact us</title>
     <link rel="stylesheet" href="./../assets/css/index.css" />
     <link rel="stylesheet" href="./../assets/css/login-and-signup.css" />
   </head>
@@ -52,11 +52,11 @@
       <img src="./../assets/images/side-image.png" />
       <div class="form-container">
         <div>
-          <h1>Sign up to Exclusive</h1>
-          <p>Enter your details below</p>
+          <h1>Contact us</h1>
+          <p>Enter your message below</p>
         </div>
         <div id="error-container"></div>
-        <form id="registration-form">
+        <form>
           <input
             type="text"
             name="name"
@@ -68,35 +68,18 @@
             type="email"
             name="email"
             id="email"
-            class="input-field"
             placeholder="Your email"
+            class="input-field"
           />
           <input
-            type="tel"
-            name="mobile-number"
-            id="mobile-number"
+            name="message"
+            id="message"
+            placeholder="Enter your message"
             class="input-field"
-            placeholder="Mobile number"
-          />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            class="input-field"
-            placeholder="Password"
-          />
-          <input
-            type="password"
-            name="re-password"
-            id="re-password"
-            class="input-field"
-            placeholder="Re-enter password"
-          />
-          <input type="submit" value="Create Account" class="btn btn-orange" id="submit-btn"/>
+          >
+          </textarea>
+          <input type="submit" value="Send" id="submit-btn"/>
         </form>
-        <div>
-          Already have account? <a href="./../pages/login.html">Login</a>
-        </div>
       </div>
     </main>
     <!-- ----------------------------------- Start Footer ----------------------------------------- -->
@@ -178,6 +161,5 @@
       </div>
     </footer>
     <!-- ----------------------------------- End Footer ------------------------------------------- -->
-    <script src="./../assets/js/registration.js"></script>
   </body>
 </html>
