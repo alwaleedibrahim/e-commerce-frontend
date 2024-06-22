@@ -285,14 +285,10 @@ nav{
     width: 70%;
     height: 90%;
     position: relative;
-}
-
-.offer-container img {
-    width: 100%;
+    background-image: url("./../images/offer.jpg");
 }
 
 .offer-text {
-    position: absolute;
     color: #b43b3b;
     top:0;
     padding: 2rem;
@@ -725,7 +721,7 @@ footer a{
 }
 
 #feature-contnet-left{
-    background:url('/images/feature1.png');
+    background:url('/assets/images/feature1.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 50%;
@@ -738,7 +734,7 @@ footer a{
 }
 
 #feature-contnet-right-top{
-    background:url('/images/feature2.png');
+    background:url('/assets/images/feature2.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
@@ -778,13 +774,13 @@ footer a{
 }
 
 #feature-contnet-right-bottom-one{
-    background:url('/images/feature3.png');
+    background:url('/assets/images/feature3.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 #feature-contnet-right-bottom-two{
-    background:url('/images/feature4.png');
+    background:url('/assets/images/feature4.png');
     background-size: contain;
     background-repeat: no-repeat;
 }

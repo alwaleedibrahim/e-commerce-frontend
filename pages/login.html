@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cart</title>
-    <link rel="stylesheet" href="./cart.css"/>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <title>Log in to Exclusive</title>
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/login-and-signup.css" />
   </head>
   <body>
+    <!-- ----------------------------------- Start Navbar ----------------------------------------- -->
     <header>
       <div id="ads">
         <label class="label">
@@ -43,79 +37,45 @@
               type="search"
               name="search"
               id="search"
-              placeholder="what you looking for"
+              placeholder="Find Your Product"
             />
             <i class="fas fa-search"></i>
           </div>
           <i class="fa-regular fa-heart"></i>
-          <i id="cart-icon" onclick='window.open("/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
-          <span id="cart-counter">0</span>
-          <i class="fa-regular fa-user"></i>
+          <i class="fa-solid fa-cart-shopping"></i>
         </div>
       </nav>
     </header>
+    <!-- ----------------------------------- End Navbar ------------------------------------------- -->
 
-    <h6><span id="home-word">Home / </span> Cart</h6>
-    
-    <div id="specifers_containter">
-      <ul class="item_specifers">
-        <li>Product</li>
-        <li>Price</li>
-        <li>Quantity</li>
-        <li>Subtotal</li>
-      </ul>
-    </div>
-
- 
- <div class="item">
-  <div class="item-spacing"> 
-      <img width="200px" height="100px" src="./tv.jpg" alt="tv image">
-  </div>
-  <div class="item-spacing">
-      <p>$10450</p>
-  </div>
-  <div id="quant-num" class="item-spacing">
-      <input type="number" value="1" min="1" max="10">
-  </div>
-  <div class="item-spacing">
-      <p>$10450</p>
-  </div>
-</div>
-
-
-    
-<div id="white-buttons-container">
-     <div class="left">
-       <button class="btn-white">Return to Shop</button>
-     </div>
-
-     <div class="right">
-       <button class="btn-white">Update Cart</button>
-     </div>
-     
-</div>
-    
-   <div id="coupon">
-    <input class="coupon-input" placeholder="Coupon Code" />
-    <button class="btn-orange">Apply Coupon</button>
-   </div>
-    
-
-    <div class="cart-container">
-      <div class="cart-total">
-      <h3>Cart Total</h3>
-      <h5>Subtotal</h5>
-      <h5>Shipping</h5>
-      <h5>Total</h5>
-      <button class="btn-orange">Process to check out</button>
-    </div>
-     </div>
-     
-    
-
-
-
-
+    <main>
+      <img src="/assets/images/side-image.png" />
+      <div class="form-container">
+        <div>
+          <h1>Log in to Exclusive</h1>
+          <p>Enter your details below</p>
+        </div>
+        <div id="error-container"></div>
+        <form id="login-form">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="input-field"
+            placeholder="Your email"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="input-field"
+            placeholder="Password"
+          />
+          <input type="submit" value="Log In" class="btn btn-orange" id="submit-btn"/>
+        </form>
+      </div>
+    </main>
+    <!-- ----------------------------------- Start Footer ----------------------------------------- -->
     <footer>
       <div class="container" id="footer-content">
         <div id="subscribe">
@@ -192,8 +152,8 @@
       <div id="copy-right">
         <p>&copy; 2023 Exclusive All Rights Reserved</p>
       </div>
-    </footer>  
-    <script src="./js/index.js"></script>
-    <script src="./cart.js"></script>
+    </footer>
+    <!-- ----------------------------------- End Footer ------------------------------------------- -->
+    <script src="/assets/js/login.js"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -65,7 +65,7 @@
                         <div id="main-btn"><button>Shop Now </button> <i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                     <div id="main-img-container">
-                        <img class="main-img" src="./images/main.png" alt="iPhone 14 Series">
+                        <img class="main-img" src="/assets/images/main.png" alt="iPhone 14 Series">
                     </div>
                 </div>
                 <div class="swiper-slide main-div">
@@ -77,7 +77,7 @@
                         <div id="main-btn"><button>Shop Now </button> <i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                     <div id="main-img-container">
-                        <img class="main-img" src="./images/samsung.png" alt="Samsung S24+ Series">
+                        <img class="main-img" src="/assets/images/samsung.png" alt="Samsung S24+ Series">
                     </div>
                 </div>
             </div>
@@ -129,27 +129,27 @@
             </div>
         </div>
         <div id="categories-icons">
-            <div class="category-icon" onclick="location.href='/category.html?cat=mobiles'">
+            <div class="category-icon" onclick="location.href='/pages/category.html?cat=mobiles'">
                 <i class="fa-solid fa-mobile-screen-button"></i>
                 <span class="category-name">Phones</span>
             </div>
 
-            <div class="category-icon" onclick="location.href='/category.html?cat=laptop'">
+            <div class="category-icon" onclick="location.href='/pages/category.html?cat=laptop'">
                 <i class="fa-solid fa-computer"></i>
                 <span class="category-name">Computers</span>
             </div>
 
-            <div class="category-icon" onclick="location.href='/category.html?cat=television'">
+            <div class="category-icon" onclick="location.href='/pages/category.html?cat=television'">
                 <i class="fa-solid fa-tv"></i>
                 <span class="category-name">Televisions</span>
             </div>
 
-            <div class="category-icon" onclick="location.href='/category.html?cat=camera'">
+            <div class="category-icon" onclick="location.href='/pages/category.html?cat=camera'">
                 <i class="fa-solid fa-camera"></i>
                 <span class="category-name">Camera</span>
             </div>
 
-            <div class="category-icon" onclick="location.href='/category.html?cat=books'">
+            <div class="category-icon" onclick="location.href='/pages/category.html?cat=books'">
                 <i class="fa-solid fa-book"></i>
                 <span class="category-name">Books</span>
             </div>
@@ -354,11 +354,11 @@
         const allProductsBtn = document.querySelectorAll(".all-products");
         allProductsBtn.forEach((btn)=>{
             btn.addEventListener(("click"), ()=>{
-                window.open('index.html', '_self')
+                window.open('/index.html', '_self')
             })
         })
     </script>
-    <script src="./js/index.js"></script>
+    <script src="/assets/js/index.js"></script>
 </body>
 
 </html>
