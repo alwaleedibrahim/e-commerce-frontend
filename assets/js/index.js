@@ -30,7 +30,7 @@ window.onload = function () {
                 homeCard(data);
                 bestSellingCard(data);
                 flashSaleCard(data);
-                categoryFilter(data);s
+                categoryFilter(data);
             }
             else {
                 let search = location.search.split('search=')[1] ? location.search.split('search=')[1] : ""
