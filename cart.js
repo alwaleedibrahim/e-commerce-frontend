@@ -78,6 +78,8 @@ function updateCartTotal() {
     saveCartToStorage();
 }
 
+
+
 // Function to save cart data to localStorage
 function saveCartToStorage() {
     let cartItems = document.querySelectorAll('.cart-item');
@@ -90,6 +92,27 @@ function saveCartToStorage() {
     });
 
     localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
+
+// Function to update total cost of items in the cart
+function updateCartTotal() {
+    let cartItems = document.querySelectorAll('.cart-item');
+    let subtotal = 0;
+    cartItems.forEach(cartItem => {
+        let itemSubtotal = parseFloat(cartItem.querySelector('.subtotal').innerText.replace('$', ''));
+        subtotal += itemSubtotal;
+    });
+
+    let shipping = 10; // Example shipping cost
+    let total = subtotal + shipping;
+
+    document.querySelector('#subtotal').innerText = `$${subtotal}`;
+    document.querySelector('#shipping').innerText = `$${shipping}`;
+    document.querySelector('#fullTotal-cart').innerText = `$${total}`;
+
+    saveCartToStorage(); // Save updated cart to localStorage
 }
 
 // Event listener when DOM content is loaded
