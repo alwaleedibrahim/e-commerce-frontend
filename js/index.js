@@ -24,6 +24,8 @@ window.onload = function () {
             else if (location.pathname == '/home.html') {
                 homeCard(data);
                 bestSellingCard(data);
+                flashSaleCard(data);
+                categoryFilter(data);
             }
             else {
                 let search = location.search.split('search=')[1] ? location.search.split('search=')[1] : ""
@@ -194,6 +196,19 @@ function bestSellingCard(data) {
     card(cards, bestSellingDiv);
 }
 
+// flash-sale-cards
+const flashSaleDiv = document.getElementById("flash-sale-cards");
+
+function flashSaleCard(data) {
+    let cards = data.laptop.slice(0, 6);
+    let saleCards = []
+    cards.forEach((ele)=>{
+        if(ele.sale_price !== null){
+            saleCards.push(ele)
+        }
+    })
+    card(saleCards, flashSaleDiv);
+}
 
 // ////////////////////////////////////////// Card Functions /////////////////////////////////////// //
 let defaultQuantity = 0;
@@ -490,5 +505,19 @@ dataProductContent.appendChild(productRoles);
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
 // /////////////////////////////////////////////// Start Home Code //////////////////////////////////////// //
+let getCategories = document.querySelectorAll(".category-name");
+
+
+function categoryFilter(data) {
+    console.log(getCategories);
+getCategories.forEach((ele) => {
+    ele.addEventListener("click", () => {
+        console.log(ele);
+    });
+});
+    for (const key in data) {
+        console.log(key);
+    }
+}
 // /////////////////////////////////////////////// End Home Code //////////////////////////////////////// //
 
