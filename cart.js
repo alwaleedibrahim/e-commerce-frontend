@@ -1,53 +1,13 @@
 // Function to request products from a JSON file
 function requestProducts() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'products.json');
+    xhr.open('GET', './../api/products.json');
 
     xhr.onload = function() {
         if (this.status >= 200 && this.status < 300) {
-            let productsData = JSON.parse(this.responseText);
-            let productContainer = document.querySelector('.cart-items');
+            let products = JSON.parse(this.responseText);
             let savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            for (let category in productsData) {
-                let categoryArray = productsData[category];
-                
-                for (let i = 0; i < categoryArray.length; i++) {
-                    let product = categoryArray[i];
-                    let savedItem = savedCart.find(item => item.productName === product.name);
-
-                    if (savedItem) {
-                        let cartItemElement = document.createElement('div');
-                        cartItemElement.classList.add('cart-item', 'cart-row');
-
-                        cartItemElement.innerHTML = `
-                            <img src="${product.image_key}">
-                            <div class="cart-item-details">
-                                <h4>${product.name}</h4>
-                                <p>$${product.price}</p>
-                                <input type="number" value="${savedItem.quantity}" min="1" max="20">
-                                <p class="subtotal">$${(savedItem.quantity * product.price).toFixed(2)}</p>
-                                <button class="remove-item">Remove</button>
-                            </div>`;
-
-                        productContainer.appendChild(cartItemElement);
-
-                        let quantityInput = cartItemElement.querySelector('input[type="number"]');
-                        quantityInput.addEventListener('change', function() {
-                            updateSubtotal(cartItemElement, product, quantityInput.value);
-                            updateCartTotal();
-                        });
-
-                        let removeButton = cartItemElement.querySelector('.remove-item');
-                        removeButton.addEventListener('click', function() {
-                            cartItemElement.remove();
-                            updateCartTotal();
-                        });
-                    }
-                }
-            }
-
-            updateCartTotal();
+            createCard(savedCart)
         } else {
             console.error('Failed to load products');
         }
@@ -56,16 +16,90 @@ function requestProducts() {
     xhr.send();
 }
 
-// Function to update subtotal for a cart item
-function updateSubtotal(cartItemElement, product, newQuantity) {
-    let quantity = parseInt(newQuantity);
+let productContainer = document.getElementById("items");
+
+function currentQuantity(product) {
+    let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
+    let totalQuantity = 0;
+
+    if (product) {
+        let productName = product.name;
+        totalQuantity = productAdded.reduce((total, prod) => {
+            if (prod.name === productName) {
+                return total + 1;
+            }
+            return total;
+        }, 0);
+    } else {
+        totalQuantity = 0;
+    }
+
+    defaultQuantity = totalQuantity;
+    return totalQuantity;
+}
+function createCard(data){
+    data.forEach(product => {
+        let defaultQuantity = currentQuantity(product);
+        console.log(defaultQuantity);
+        let cartItemElement = document.createElement('div');
+        cartItemElement.classList.add('cart-item', 'cart-row');
+        cartItemElement.className ="item"
+
+        const words = product.name.trim().split(/\s+/);
+        const truncatedText = words.slice(0, 3).join(" ");
+
+        cartItemElement.innerHTML = `
+            <div class="item-spacing"> 
+                <img src="${product.image_key}">
+            </div
+            <div class="item-spacing"> 
+                <h4>${truncatedText}</h4>
+            </div>
+            <input type="number" value="${defaultQuantity}" min="1" max="20">
+            <div class="item-spacing"> 
+                <p>$${product.price*defaultQuantity}</p>
+            </div>
+                <button class="remove-item">Remove</button>
+            `;
+        //     <div class="cart-item-details">
+                
+        //     <p class="subtotal">$${product.price}</p>
+        // </div>`;
+
+        productContainer.appendChild(cartItemElement);
+
+        
+        let quantityInput = cartItemElement.querySelector('input[type="number"]');
+        quantityInput.addEventListener('change', function() {
+            updateSubtotal(cartItemElement, product);
+            updateCartTotal();
+        });
+
+        let removeButton = cartItemElement.querySelector('.remove-item');
+        removeButton.addEventListener('click', function() {
+            cartItemElement.remove();
+            updateCartTotal();
+        });
+
+       
+        let savedItem = savedCart.find(item => item.productName === product.name);
+        if (savedItem) {
+            quantityInput.value = savedItem.quantity;
+            updateSubtotal(cartItemElement, product);
+        }
+    });
+
+    updateCartTotal();
+}
+function updateSubtotal(cartItemElement, product) {
+    let quantity = parseInt(cartItemElement.querySelector('input[type="number"]').value);
     let subtotal = quantity * product.price;
     cartItemElement.querySelector('.subtotal').innerText = `$${subtotal}`;
 
     saveCartToStorage();
 }
 
-// Function to update total cost of items in the cart
+
 function updateCartTotal() {
     let cartItems = document.querySelectorAll('.cart-item');
     let total = 0;
@@ -74,13 +108,15 @@ function updateCartTotal() {
         total += subtotal;
     });
 
-    document.querySelector('.total').innerText = `$${total}`;
+
+    let shipping = calculateShipping(subtotal, products);
+     total = subtotal + shipping;
+
+    document.querySelector('.subtotal').innerText = `$${total}`;
     saveCartToStorage();
 }
 
-
-
-// Function to save cart data to localStorage
+// save cart data to localStorage
 function saveCartToStorage() {
     let cartItems = document.querySelectorAll('.cart-item');
     let cart = [];
@@ -95,27 +131,6 @@ function saveCartToStorage() {
 }
 
 
-
-// Function to update total cost of items in the cart
-function updateCartTotal() {
-    let cartItems = document.querySelectorAll('.cart-item');
-    let subtotal = 0;
-    cartItems.forEach(cartItem => {
-        let itemSubtotal = parseFloat(cartItem.querySelector('.subtotal').innerText.replace('$', ''));
-        subtotal += itemSubtotal;
-    });
-
-    let shipping = 10; // Example shipping cost
-    let total = subtotal + shipping;
-
-    document.querySelector('#subtotal').innerText = `$${subtotal}`;
-    document.querySelector('#shipping').innerText = `$${shipping}`;
-    document.querySelector('#fullTotal-cart').innerText = `$${total}`;
-
-    saveCartToStorage(); // Save updated cart to localStorage
-}
-
-// Event listener when DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
     requestProducts();
 });
