@@ -60,7 +60,7 @@ function requestProducts() {
 function updateSubtotal(cartItemElement, product, newQuantity) {
     let quantity = parseInt(newQuantity);
     let subtotal = quantity * product.price;
-    cartItemElement.querySelector('.subtotal').innerText = `$${subtotal.toFixed(2)}`;
+    cartItemElement.querySelector('.subtotal').innerText = `$${subtotal}`;
 
     saveCartToStorage();
 }
@@ -74,7 +74,7 @@ function updateCartTotal() {
         total += subtotal;
     });
 
-    document.querySelector('.total').innerText = `$${total.toFixed(2)}`;
+    document.querySelector('.total').innerText = `$${total}`;
     saveCartToStorage();
 }
 
