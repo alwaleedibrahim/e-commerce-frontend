@@ -242,8 +242,8 @@ nav{
 .user-options {
     position: absolute;
     display: none;
-    color: var(--primary-color);
-    background-color: var(--secondary-color-hover);
+    color: white;
+    background-color: black;
     padding: 0;
     margin-top: 1rem;
     margin-left: -1.5rem;
@@ -264,10 +264,85 @@ nav{
 }
 
 .user-options li:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--text-color-grey);
     cursor: pointer;
 }
+
+.user-options li>a {
+    color: inherit;
+    text-decoration: inherit;
+}
 /* *************************************** End Header Style ********************************************* */
+
+/* *************************************** Start Offer Style ********************************************* */
+
+#offer-section {
+    display: flex;
+}
+
+.offer-container {
+    margin: auto;
+    width: 70%;
+    height: 90%;
+    position: relative;
+}
+
+.offer-container img {
+    width: 100%;
+}
+
+.offer-text {
+    position: absolute;
+    color: #b43b3b;
+    top:0;
+    padding: 2rem;
+} 
+
+.offer-text h1 {
+    margin: 2rem 0;
+    color: #ffffff;
+    max-width: 60%;
+}
+
+.offer-text h3 {
+    color: #19d765;
+ }
+
+
+#buy-now-button {
+    margin: 1rem 0;
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    background-color: #19d765;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#offer-counter {
+    display: flex;
+    flex-direction: row;
+}
+#offer-counter>div {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 0.2rem;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    margin: 0.25rem;
+}
+
+.offer-timer-value {
+    margin: auto;
+}
+.offer-timer-unit {
+    font-weight: bold;
+    margin: auto;
+}
+/* *************************************** End Offer Style ********************************************* */
 
 /* *************************************** Start Sale Style ******************************************* */
 .hover-icon {
