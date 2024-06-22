@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('products.json')
+    fetch('./../api/products.json')
         .then(response => response.json())
         .then(data => {
             let favorites = []; 

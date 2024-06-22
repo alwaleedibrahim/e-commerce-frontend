@@ -28,7 +28,7 @@ function handleLogin(event) {
     for (user of users) {
       if (user.email == email && user.password == password) {
         addToCookies("email", email);
-        location.assign("/index.html");
+        location.assign("./../index.html");
         return;
       }
     }
