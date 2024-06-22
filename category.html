@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Shop Store</title>
+</head>
+
+<body>
+    <!-- ----------------------------------- Start Navbar ----------------------------------------- -->
+    <header>
+        <div id="ads">
+            <label class="label">
+                Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+                <span id="ads-span">ShopNow</span>
+            </label>
+        </div>
+        <nav class="container">
+            <h2 id="logo"><span>Ex</span>clusive</h2>
+            <ul id="nav-list">
+                <li class="nav-link"><a href="">Home</a><i class="fa-solid fa-house"></i></li>
+                <li class="nav-link"><a href="">Contact</a><i class="fa-solid fa-paper-plane"></i> </li>
+                <li class="nav-link"><a href="">Shop</a> <i class="fa-solid fa-shop"></i> </li>
+                <li id="sign-up" class="nav-link"><a href="">Sign Up</a><i class="fa-solid fa-right-to-bracket"></i>
+                </li>
+            </ul>
+            <div id="header-icons">
+                <div id="search-div">
+                  <form action="">
+                    <input type="search" name="search" id="search" placeholder="Find Your Product" />
+                    <i class="fas fa-search"></i>
+                  </form>
+                </div>
+                <i class="fa-regular fa-heart"></i>
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </nav>
+    </header>
+    <!-- <button class="btn-orange">Test button</button> -->
+    <!-- ----------------------------------- End Navbar ------------------------------------------- -->
+    
+    <!-- ----------------------------------- Start Sale Section ----------------------------------- -->
+    <style>
+        #product-bar{
+            background-color: var(--background-color) ;
+            padding: 30px;
+            margin: 10px;
+            border-radius:5px;
+            text-align:center;
+        }
+        #product-bar div{
+            display: inline-block;
+            margin-right: 80px;
+        }
+        select{
+            border: none;
+            background-color: transparent;
+            font-family: "Quicksand";
+            font-size: 16px;
+            padding: 0 30px;
+        }
+    </style>
+    <section id="product-bar">
+        <div> <span id="bar-product-counter">13</span> Items </div>
+        <div> 
+            Sort By 
+            <select name="" id="" onchange="filtterFunction(this.value)">
+                <option value="" selected>RECOMENDED</option>
+                <option value="down" >PRICE (HIGHT TO LOW) </option>
+                <option value="up" >PRICE (LOW TO HIGHT) </option>
+                <option value="best" >BEST RATED </option>
+            </select>
+        </div>
+        <div>
+            Show 
+            <select id="show-product-count" name="count" onchange="saleCard(dataSearch.slice(0,this.value))">
+                <option value="10">10 PRODUCT</option>
+                <option value="15">15 PRODUCT</option>
+                <option value="1000" selected>All PRODUCT</option>
+            </select>
+        </div>
+    </section>
+    <section id="sale" class="container">
+    </section>
+    <!-- ----------------------------------- End Sale Section ------------------------------------- -->
+
+    <!-- ----------------------------------- Start Footer ----------------------------------------- -->
+    <footer>
+        <div  class="container" id="footer-content">
+            <div id="subscribe">
+                <h2 style="color: var(--white);" id="logo"><span>Ex</span>clusive</h2>
+                <h5>Subscribe</h5>
+                <span>Get 10% off your first order</span>
+                <div style="max-width:200px; margin-top: 1rem;" id="search-div">
+                    <input style="max-width:80%" type="search" name="search" id="search" placeholder="subscribe" />
+                    <i style="color: var(--black);" class="fa-regular fa-paper-plane"></i>
+                </div>
+            </div>
+
+            <div id="support">
+                <h4>Support</h4>
+                <ul id="support-list">
+                    <li class="support-info">
+                        111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.
+                    </li>
+
+                    <li class="support-info">exclusive@gmail.com</li>
+                    <li class="support-info">+88015-88888-9999</li>
+                </ul>
+            </div>
+
+            <div id="account">
+                <h4>Account</h4>
+                <ul id="account-list">
+                    <li class="account-link"> <a href="">My Account</a></li>
+                    <li class="account-link"> <a href="">Login / Register</a></li>
+                    <li class="account-link"> <a href="">Cart</a></li>
+                    <li class="account-link"> <a href="">Wishlist</a></li>
+                    <li class="account-link"> <a href="">Shop</a></li>
+                </ul>
+            </div>
+
+            <div id="quik-link">
+                <h4>Quik Link</h4>
+                <ul id="quik-link-list">
+                    <li class="quik-link-item"> <a href="">Privacy Policy</a></li>
+                    <li class="quik-link-item"> <a href="">Terms Of Use</a></li>
+                    <li class="quik-link-item"> <a href="">FAQ</a></li>
+                    <li class="quik-link-item"> <a href="">Contact</a></li>
+                </ul>
+            </div>
+
+            <div id="download">
+                <h4>Download App</h4>
+                <p>Save $3 with App New User Only</p>
+                <ul id="social-links">
+                    <li class="social-icon"><a href=""><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="social-icon"><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                    <li class="social-icon"><a href=""><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li class="social-icon"><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="copy-right">
+            <p>&copy; 2023 Exclusive All Rights Reserved</p>
+        </div>
+    </footer>
+    <!-- ----------------------------------- End Footer ------------------------------------------- -->
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
