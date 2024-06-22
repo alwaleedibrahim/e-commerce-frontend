@@ -3,14 +3,14 @@ let data = [];
 let dataSearch = [];
 window.onload = function () {
     let xhr = new XMLHttpRequest();
-    xhr.open('Get', './api/products.json');
+    xhr.open('Get', './../api/products.json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             data = JSON.parse(xhr.responseText);
             if (location.pathname == '/index.html' && location.search == "") {
                 saleCard(data.laptop.slice(0, 10));
             }
-            else if (location.pathname === '/pages/404.html') {
+            else if (location.pathname === './../pages/404.html') {
                 if (location.search == "") {
                     let searchVal = '';
                     searchProduct(searchVal, true)
@@ -19,14 +19,14 @@ window.onload = function () {
                     searchProduct(searchVal, true)
                 }
             } 
-            else if (location.pathname == '/pages/category.html'){
+            else if (location.pathname == './../pages/category.html'){
                 let cat = location.search.split('cat=')[1].split("&")[0];
                 card(data[cat],document.getElementById("sale"))
             }
-            else if (location.pathname == '/pages/product.html') {
+            else if (location.pathname == './../pages/product.html') {
                 secSaleCard(data);
             }
-            else if (location.pathname == '/pages/home.html') {
+            else if (location.pathname == './../pages/home.html') {
                 homeCard(data);
                 bestSellingCard(data);
             }
@@ -173,7 +173,7 @@ function card(data, div) {
         cartBtn.addEventListener("click", () => {
             setData(card); 
             currentQuantity();
-            window.location.href = "/product.html";
+            window.location.href = "./../pages/product.html";
         });
     });
 }

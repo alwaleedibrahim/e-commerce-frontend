@@ -1,7 +1,7 @@
 // Function to request products from a JSON file
 function requestProducts() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'products.json');
+    xhr.open('GET', './../api/products.json');
 
     xhr.onload = function() {
         if (this.status >= 200 && this.status < 300) {

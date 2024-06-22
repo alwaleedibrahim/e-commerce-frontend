@@ -721,7 +721,7 @@ footer a{
 }
 
 #feature-contnet-left{
-    background:url('/assets/images/feature1.png');
+    background:url('./../images/feature1.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 50%;
@@ -734,7 +734,7 @@ footer a{
 }
 
 #feature-contnet-right-top{
-    background:url('/assets/images/feature2.png');
+    background:url('./../images/feature2.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
@@ -774,13 +774,13 @@ footer a{
 }
 
 #feature-contnet-right-bottom-one{
-    background:url('/assets/images/feature3.png');
+    background:url('./../images/feature3.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 #feature-contnet-right-bottom-two{
-    background:url('/assets/images/feature4.png');
+    background:url('./../images/feature4.png');
     background-size: contain;
     background-repeat: no-repeat;
 }

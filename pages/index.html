@@ -37,13 +37,51 @@
                   </form>
                 </div>
                 <i class="fa-regular fa-heart"></i>
-                <a href="./../pages/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                <i onclick='window.open("./pages/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
+                <div>
+                    <span class="user-icon-container">
+                        <i class="fa-regular fa-user"></i>
+                    </span>
+                    <div class="user-options">
+                        <ul>
+                            <li id="login-option"><a href="./../pages/login.html">Login</a></li>
+                            <li id="signup-option"><a href="./../pages/signup.html">Sign Up</a></li>
+                            <li id="logout-option">Logout</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
     <!-- <button class="btn-orange">Test button</button> -->
     <!-- ----------------------------------- End Navbar ------------------------------------------- -->
-    
+    <section id="offer-section">
+        <div class="offer-container">
+            <div class="offer-text">
+                <h3>categories</h3>
+                <h1>Enhance your music experience</h1>
+                <div id="offer-counter">
+                    <div id="offer-counter-days">
+                        <div class="offer-timer-value">2</div>
+                        <div class="offer-timer-unit">Days</div>
+                    </div>
+                    <div id="offer-counter-hours">
+                        <div class="offer-timer-value">11</div>
+                        <div class="offer-timer-unit">Hours</div>
+                    </div>
+                    <div id="offer-counter-minutes">
+                        <div class="offer-timer-value">32</div>
+                        <div class="offer-timer-unit">Min</div>
+                    </div>
+                    <div id="offer-counter-seconds">
+                        <div class="offer-timer-value">15</div>
+                        <div class="offer-timer-unit">Sec</div>
+                    </div>
+                </div>
+                <div id="buy-now-button">Buy now</div>
+            </div>
+        </div>
+    </section>
     <!-- ----------------------------------- Start Sale Section ----------------------------------- -->
     <style>
         #product-bar{
@@ -151,7 +189,8 @@
         </div>
     </footer>
     <!-- ----------------------------------- End Footer ------------------------------------------- -->
-    <script src="./../assets/js/index.jsS"></script>
+    <script src="./../assets/js/index.js"></script>
+    <script src="./../assets/js/login.js"></script>
 </body>
 
 </html>
