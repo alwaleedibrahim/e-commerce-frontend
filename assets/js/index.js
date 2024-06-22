@@ -38,7 +38,7 @@ window.onload = function () {
         }
     }
     xhr.send();
-
+    setInterval(offerTimer,1000)
 }
 
 // //////////////////////////////////////////// LocalStorage Functions ///////////////////////////////// //
@@ -496,6 +496,36 @@ dataProductContent.appendChild(productRoles);
 
 // /////////////////////////////////////////////// Start Home Code //////////////////////////////////////// //
 
+function getDifferenceTwoDate(date1, date2) {
+
+    const ms1 = date1.getTime();
+    const ms2 = date2.getTime();
+
+    const diffMs = Math.abs(ms1 - ms2);
+
+    const days = Math.floor(diffMs / (24 * 60 * 60 * 1000));
+    const hours = Math.floor((diffMs % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+    const minutes = Math.floor((diffMs % (60 * 60 * 1000)) / (60 * 1000));
+    const seconds = Math.floor((diffMs % (60 * 1000)) / 1000);
+    return {
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds
+    };
+}
+
+
+function offerTimer(){
+    let theCurrntDate = new Date();
+    let offerDate = new Date('6-26-2024');
+    let counterDate = getDifferenceTwoDate(theCurrntDate,offerDate);
+    offerDate.setDate(theCurrntDate.getDate()+5);
+    document.getElementsByClassName('offer-timer-value')[0].innerText = counterDate.days;
+    document.getElementsByClassName('offer-timer-value')[1].innerText = counterDate.hours;
+    document.getElementsByClassName('offer-timer-value')[2].innerText = counterDate.minutes;
+    document.getElementsByClassName('offer-timer-value')[3].innerText = counterDate.seconds;
+}
 
 
 // /////////////////////////////////////////////// End Home Code //////////////////////////////////////// //
