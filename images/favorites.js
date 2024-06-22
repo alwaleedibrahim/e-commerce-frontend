@@ -1,71 +1,135 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('products.json')
-        .then(response => response.json())
-        .then(data => {
-            let favorites = []; 
 
-            // Check if favorites exist in localStorage
-            if (localStorage.getItem('favorites')) {
-                favorites = JSON.parse(localStorage.getItem('favorites'));
-            } else {
-                localStorage.setItem('favorites', JSON.stringify(favorites));
-            }
+function fetchProducts(callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'products.json', true);
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            const products = JSON.parse(xhr.responseText);
+            callback(null, products);
+        } else {
+            callback(new Error('Failed to fetch products'), null);
+        }
+    };
+    xhr.onerror = function() {
+        callback(new Error('Network error'), null);
+    };
+    xhr.send();
+}
 
-            const favoritesContainer = document.getElementById('favorites-container');
-            favoritesContainer.innerHTML = '';
 
-            data.forEach(product => {
+function initializeFavorites() {
+    const favoritesList = document.getElementById('favorites-list');
+
+    favoritesList.innerHTML = '';
+
+    fetchProducts(function(error, products) {
+        if (error) {
+            console.error('Error fetching products:', error);
+            return;
+        }
+
+      
+        products.forEach(product => {
+            if (product.favorite) {
                 const card = createProductCard(product);
+                favoritesList.appendChild(card);
+            }
+        });
+    });
+}
 
-                // Check if product is in favorites array
-                if (favorites.includes(product.id)) {
-                    card.classList.add('favorite'); 
-                }
-
-              
-                favoritesContainer.appendChild(card);
-
-              
-                const heartIcon = card.querySelector('.fa-heart');
-                heartIcon.addEventListener('click', function() {
-                    const productId = product.id;
-
-                    if (favorites.includes(productId)) {
-                       
-                        favorites = favorites.filter(id => id !== productId);
-                        card.classList.remove('favorite');
-                    } else {
-                        // Product is not a favorite, add it
-                        favorites.push(productId);
-                        card.classList.add('favorite');
-                    }
-
-                    // Update localStorage with new favorites array
-                    localStorage.setItem('favorites', JSON.stringify(favorites));
-                });
-            });
-        })
-        .catch(error => console.error('Error fetching products:', error));
-});
 
 function createProductCard(product) {
     const card = document.createElement('div');
     card.classList.add('card');
 
-    card.innerHTML = `
-        <div class="images-product-container">
-            <img src="${product.image}" alt="${product.name}" class="product-img">
-        </div>
-        <div class="product-content-container">
-            <h2>${product.name}</h2>
-            <p>${product.description}</p>
-            <div class="data-div">
-                <span class="price">${product.price}</span>
-                <button class="btn-orange">Add to Cart</button>
-            </div>
-            <i class="fa-regular fa-heart"></i> <!-- Heart icon for marking favorites -->
-        </div>
-    `;
+    const imgDiv = document.createElement('div');
+    imgDiv.classList.add('imagesi-div');
+
+    const mainImg = document.createElement('img');
+    mainImg.src = product.image;
+    mainImg.alt = product.name;
+    mainImg.classList.add('images');
+
+    imgDiv.appendChild(mainImg);
+    card.appendChild(imgDiv);
+
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('title-card');
+    titleDiv.textContent = product.name;
+
+    const priceDiv = document.createElement('div');
+    priceDiv.classList.add('price-div');
+
+    const price = document.createElement('span');
+    price.textContent = `$${product.price}`;
+
+    priceDiv.appendChild(price);
+    card.appendChild(titleDiv);
+    card.appendChild(priceDiv);
+
+    const heartIcon = document.createElement('i');
+    heartIcon.classList.add('fa-heart', 'heart-icon', product.favorite ? 'fa-solid' : 'fa-regular');
+    heartIcon.dataset.productId = product.id;
+    card.appendChild(heartIcon);
 
     return card;
 }
+
+// Function to toggle product favorite status
+function toggleFavorite(productId) {
+    fetchProducts(function(error, products) {
+        if (error) {
+            console.error('Error fetching products:', error);
+            return;
+        }
+
+        const product = products.find(p => p.id === productId);
+        if (product) {
+            product.favorite = !product.favorite;
+            saveProducts(products);
+
+            updateFavoritesCount();
+            initializeFavorites(); 
+        } else {
+            console.error('Product not found');
+        }
+    });
+}
+
+// Function to save products to local storage
+function saveProducts(products) {
+    localStorage.setItem('products', JSON.stringify(products));
+}
+
+// Function to update favorites count in header
+function updateFavoritesCount() {
+    fetchProducts(function(error, products) {
+        if (error) {
+            console.error('Error fetching products:', error);
+            return;
+        }
+
+        const favoritesCount = document.getElementById('favorites-count');
+        const count = products.filter(p => p.favorite).length;
+        favoritesCount.textContent = count;
+    });
+}
+
+
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('heart-icon')) {
+        const productId = parseInt(e.target.dataset.productId);
+        toggleFavorite(productId);
+
+     
+        e.target.classList.toggle('fa-regular');
+        e.target.classList.toggle('fa-solid');
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    initializeFavorites();
+    updateFavoritesCount();
+});

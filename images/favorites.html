@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css./index.css">
 <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -37,8 +38,11 @@
                     <input type="search" name="search" id="search" placeholder="Find Your Product" />
                     <i class="fas fa-search"></i>
                 </div>
-                <i class="fa-regular fa-heart"></i>
-                <i onclick='window.open("/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
+                <div id="favorites-count-container">
+                    <i class="fa-regular fa-heart"></i>
+                    <span id="favorites-count">0</span>
+                </div>
+                <i class="fa-regular fa-heart"></i><a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </nav>
     </header>
