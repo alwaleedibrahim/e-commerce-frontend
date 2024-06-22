@@ -32,10 +32,10 @@
         <nav class="container">
             <h2 id="logo"><span>Ex</span>clusive</h2>
             <ul id="nav-list">
-                <li class="nav-link"><a href="">Home</a><i class="fa-solid fa-house"></i></li>
-                <li class="nav-link"><a href="#">Contact</a><i class="fa-solid fa-paper-plane"></i> </li>
-                <li class="nav-link"><a href="#">Shop</a> <i class="fa-solid fa-shop"></i> </li>
-                <li id="sign-up" class="nav-link"><a href="#">Sign Up</a><i class="fa-solid fa-right-to-bracket"></i>
+                <li class="nav-link"><a href="./../pages/home.html">Home</a><i class="fa-solid fa-house"></i></li>
+                <li class="nav-link"><a href="./../pages/contact.html">Contact</a><i class="fa-solid fa-paper-plane"></i> </li>
+                <li class="nav-link"><a href="./../pages/index.html">Shop</a> <i class="fa-solid fa-shop"></i> </li>
+                <li id="sign-up" class="nav-link"><a href="./../pages/signup.html">Sign Up</a><i class="fa-solid fa-right-to-bracket"></i>
                 </li>
             </ul>
             <div id="header-icons">
@@ -45,8 +45,19 @@
                         <i class="fas fa-search"></i>
                     </form>
                 </div>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i class="fa-regular fa-heart" onclick='window.open("./../pages/favorites.html", "_self")'></i>
+                <i onclick='window.open("./../pages/cart.html", "_self")' class="fa-solid fa-cart-shopping"></i>
+                <div>
+                    <span class="user-icon-container">
+                        <i class="fa-regular fa-user"></i>
+                    </span>
+                    <div class="user-options">
+                        <ul>
+                            <li id="login-option"><a href="./../pages/login.html">Login</a></li>
+                            <li id="signup-option"><a href="./../pages/signup.html">Sign Up</a></li>
+                            <li id="logout-option">Logout</li>
+                        </ul>
+                    </div>
             </div>
         </nav>
     </header>
@@ -387,6 +398,7 @@
         })
     </script>
     <script src="./../assets/js/index.js"></script>
+    <script src="./../assets/js/login.js"></script>
 </body>
 
 </html>
