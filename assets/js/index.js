@@ -518,7 +518,6 @@ function showProductPage(){
 
 // /////////////////////////////////////////////// Start Home Code //////////////////////////////////////// //
 
-let getCategories = document.querySelectorAll(".category-name");
 
 function getDifferenceTwoDate(date1, date2) {
 
