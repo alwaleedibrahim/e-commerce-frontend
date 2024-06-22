@@ -231,6 +231,52 @@ nav{
     padding: 0.5rem 1rem;
     background-color: transparent;
 }
+/* start user icon style */
+.user-icon-container {
+    padding: 0.7rem 0.85rem;
+}
+
+.user-icon-container-active {
+    padding: 0.7rem 0.85rem;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    color: var(--primary-color);
+}
+
+.user-options {
+    position: absolute;
+    display: none;
+    color: white;
+    background-color: black;
+    padding: 0;
+    margin-top: 1rem;
+    margin-left: -1.5rem;
+}
+
+.show-user-options {
+    display: block;
+}
+
+.user-options>ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user-options li {
+    padding: 0.3rem 1.5rem;
+}
+
+.user-options li:hover {
+    background-color: var(--text-color-grey);
+    cursor: pointer;
+}
+
+.user-options li>a {
+    color: inherit;
+    text-decoration: inherit;
+}
+/* end user icon style */
 /* *************************************** End Header Style ********************************************* */
 
 /* *************************************** Start Sale Style ******************************************* */
@@ -597,11 +643,12 @@ footer a{
 
 #offer-section {
     display: flex;
-    margin-top: 2rem;
 }
 
-.offer-container{
-    width: 100%;
+.offer-container {
+    margin: auto;
+    width: 75%;
+    height: 90%;
     position: relative;
     background-image: url("./../images/offer.jpg");
 }
@@ -616,13 +663,11 @@ footer a{
     margin: 2rem 0;
     color: #ffffff;
     max-width: 60%;
-    text-transform: capitalize;
-    font-size: clamp(2rem, 4vw, 3.5rem);
 }
 
 .offer-text h3 {
     color: #19d765;
-}
+ }
 
 
 #buy-now-button {
@@ -638,16 +683,13 @@ footer a{
 #offer-counter {
     display: flex;
     flex-direction: row;
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
 }
-
 #offer-counter>div {
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
     color: #000000;
-    padding: 0.5rem;
+    padding: 0.2rem;
     border-radius: 50%;
     height: 4rem;
     width: 4rem;
@@ -655,10 +697,10 @@ footer a{
 }
 
 .offer-timer-value {
-    font-weight: bold;
     margin: auto;
 }
 .offer-timer-unit {
+    font-weight: bold;
     margin: auto;
 }
 /*  End Offer Style */
