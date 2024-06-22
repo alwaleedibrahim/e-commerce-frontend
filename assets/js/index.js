@@ -30,7 +30,6 @@ window.onload = function () {
                 homeCard(data);
                 bestSellingCard(data);
                 flashSaleCard(data);
-                categoryFilter(data);
             }
             else {
                 let search = location.search.split('search=')[1] ? location.search.split('search=')[1] : ""
@@ -511,21 +510,6 @@ dataProductContent.appendChild(productRoles);
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
 // /////////////////////////////////////////////// Start Home Code //////////////////////////////////////// //
-
-let getCategories = document.querySelectorAll(".category-name");
-
-
-function categoryFilter(data) {
-    console.log(getCategories);
-getCategories.forEach((ele) => {
-    ele.addEventListener("click", () => {
-        console.log(ele);
-    });
-});
-    for (const key in data) {
-        console.log(key);
-    }
-}
 
 function getDifferenceTwoDate(date1, date2) {
 
