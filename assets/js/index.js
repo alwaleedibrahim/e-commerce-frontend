@@ -10,22 +10,16 @@ window.onload = function () {
             if (location.pathname.includes('/pages/index.html')  && location.search == "") {
                 saleCard(data.laptop.slice(0, 10));
             }
-            else if (location.pathname.includes('/pages/404.html')) {
-                if (location.search == "") {
-                    let searchVal = '';
-                    searchProduct(searchVal, true)
-                } else {
-                    let searchVal = location.search.split('search=')[1].split("&")[0];
-                    searchProduct(searchVal, true)
-                }
-            } 
             else if (location.pathname.includes('/pages/category.html')) {
                 let cat = location.search.split('cat=')[1].split("&")[0];
                 card(data[cat],document.getElementById("sale"))
             }
             else if (location.pathname.includes('/pages/product.html')) {
-                secSaleCard(data);
-                //showProductPage();
+                if(localStorage.getItem("product")){
+                    secSaleCard(data);
+                }else{
+                    location.href = "./../pages/index.html"
+                }
             }
             else if (location.pathname.includes('/pages/home.html')) {
                 homeCard(data);
@@ -39,7 +33,7 @@ window.onload = function () {
             else {
                 let search = location.search.split('search=')[1] ? location.search.split('search=')[1] : ""
                 let searchVal = search.split("&")[0]; //علشان لو في انبوت تاني ميتلخبطش 
-                searchProduct(searchVal, false)
+                searchProduct(searchVal)
             }
         }
     }
@@ -177,7 +171,7 @@ function card(data, div) {
 
         cartBtn.addEventListener("click", () => {
             setData(card); 
-            currentQuantity();
+            // currentQuantity();
             window.location.href = "./../pages/product.html";
         });
     });
@@ -232,8 +226,7 @@ function saleCard(data) {
     card(data, saleDiv)
 }
 
-function searchProduct(sValue, erroPage) {
-    let searchCount = location.search.split('count=')[1]?.split("&")[0];
+function searchProduct(sValue) {
     let searchResult = []
     for (const cat in data) {
         for (const prod of data[cat]) {
@@ -243,11 +236,10 @@ function searchProduct(sValue, erroPage) {
         }
     }
 
-    if (erroPage && searchResult.length > 0) {
-        document.getElementById("error-div").parentElement.remove()
-        saleCard(searchResult)
+    if (searchResult.length == 0) {
+        location.href = "/pages/404.html";
     }
-    else {
+    else{
         saleCard(searchResult)
     }
 
