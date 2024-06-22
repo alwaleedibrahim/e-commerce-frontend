@@ -25,7 +25,7 @@ window.onload = function () {
             }
             else if (location.pathname.includes('/pages/product.html')) {
                 secSaleCard(data);
-                showProductPage();
+                //showProductPage();
             }
             else if (location.pathname.includes('/pages/home.html')) {
                 homeCard(data);
