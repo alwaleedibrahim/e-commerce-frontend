@@ -25,11 +25,16 @@ window.onload = function () {
             }
             else if (location.pathname.includes('/pages/product.html')) {
                 secSaleCard(data);
+                showProductPage();
             }
             else if (location.pathname.includes('/pages/home.html')) {
                 homeCard(data);
                 bestSellingCard(data);
                 flashSaleCard(data);
+                setInterval(offerTimer,1000);
+            }
+            else if(location.pathname.includes('/pages/cart.html')){
+                //  لا اله الا الله محمد رسول الله
             }
             else {
                 let search = location.search.split('search=')[1] ? location.search.split('search=')[1] : ""
@@ -39,7 +44,6 @@ window.onload = function () {
         }
     }
     xhr.send();
-    setInterval(offerTimer,1000)
 }
 
 // //////////////////////////////////////////// LocalStorage Functions ///////////////////////////////// //
@@ -215,55 +219,7 @@ function flashSaleCard(data) {
 }
 
 
-// ////////////////////////////////////////// Card Functions /////////////////////////////////////// //
-let defaultQuantity = 0;
 
-// let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
-
-function currentQuantity() {
-    let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
-    let totalQuantity = 0;
-
-    if (product) {
-        let productName = product.name;
-        totalQuantity = productAdded.reduce((total, prod) => {
-            if (prod.name === productName) {
-                return total + 1;
-            }
-            return total;
-        }, 0);
-    } else {
-        totalQuantity = 0;
-    }
-
-    defaultQuantity = totalQuantity;
-    return totalQuantity;
-}
-
-function decreasing(prod) {
-    let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
-    if (defaultQuantity > 0) {
-        defaultQuantity --;
-        const index = productAdded.findIndex(item => item.name === prod.name);
-        if (index !== -1) {
-            productAdded.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(productAdded));
-            currentQuantity();
-            quantitySpan.innerHTML = defaultQuantity;
-        }
-    }
-}
-
-function increasing(card) {
-    let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
-    defaultQuantity++;
-    productAdded.push(card);
-    localStorage.setItem('cart', JSON.stringify(productAdded));
-    currentQuantity();
-    quantitySpan.innerHTML = defaultQuantity;
-}
-
-currentQuantity();
 // ////////////////////////////////////////// Filter Functions /////////////////////////////////////// //
 const saleDiv = document.getElementById("sale");
 
@@ -340,163 +296,214 @@ function filtterFunction(by) {
 
 // ///////////////////////////////////////////////Start Product Code//////////////////////////////////////// //
 
-// ////////////////////////////////// Get Product //////////////////////////////// //
-const imagesProduct = document.getElementById("images-product-container");
-const mainProductContent = document.getElementById("main-product-content");
+function showProductPage(){
+    ///////////////////// Card Functions /////////////////////
+    let defaultQuantity = 0;
 
-// Images Product //
-const productImages = product.image_keys.slice(0, 4);
-const productImgsDiv = document.createElement("div");
-productImgsDiv.id = "product-imgs-div"
-imagesProduct.appendChild(productImgsDiv)
+    // let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
 
-productImages.forEach((ele) => {
-    const productImgs = document.createElement("img");
-    productImgs.className = "product-imgs";
-    productImgs.src = ele;
-    productImgsDiv.appendChild(productImgs);
-});
+    function currentQuantity() {
+        let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalQuantity = 0;
 
+        if (product) {
+            let productName = product.name;
+            totalQuantity = productAdded.reduce((total, prod) => {
+                if (prod.name === productName) {
+                    return total + 1;
+                }
+                return total;
+            }, 0);
+        } else {
+            totalQuantity = 0;
+        }
 
-const mainProductImage = document.createElement("img");
-mainProductImage.id = "main-product-img";
-mainProductImage.src = product.image_key;
-imagesProduct.appendChild(mainProductImage);
-
-imagesProduct.appendChild(mainProductImage);
-
-
-// Create Content //
-const productTitle = document.createElement("h3");
-productTitle.id = "product-title";
-const words = product.name.trim().split(/\s+/);
-const truncatedText = words.slice(0, 4).join(" ");
-
-productTitle.style.textTransform = "capitalize";
-productTitle.textContent = truncatedText;
-
-mainProductContent.appendChild(productTitle);
-
-// Rating Logic //
-const ratingContainer = document.createElement("div");
-ratingContainer.id = "stars-div";
-ratingContainer.innerHTML = `
-                        <i class="rate stars fa-solid fa-star"></i>
-                        <i class="rate stars fa-solid fa-star"></i>
-                        <i class="rate stars fa-solid fa-star"></i>
-                        <i class="rate stars fa-solid fa-star"></i>
-                        <i class="rate stars fa-solid fa-star"></i>
-                        `
-mainProductContent.appendChild(ratingContainer);
-ratingContainer.style.margin = "0.5rem 0";
-
-const getStars = ratingContainer.querySelectorAll(".rate");
-const stars = Math.round(product.product_rating?.value);
-getStars.forEach((ele, index) => {
-    if (index < stars) {
-        ele.classList.add("stars-filled");
-        ele.classList.remove("stars");
-    } else {
-        ele.classList.add("stars");
-        ele.classList.remove("stars-filled");
+        defaultQuantity = totalQuantity;
+        return totalQuantity;
     }
-});
 
-const priceSpan = document.createElement("span");
-priceSpan.className = "product-price";
-mainProductContent.appendChild(priceSpan);
-priceSpan.innerText = product.price + " $";
-
-const description = document.createElement("p");
-description.className = "product-description";
-mainProductContent.appendChild(description);
-description.innerText = product.name;
-
-// Second Product Section //
-const dataProductContent = document.getElementById("data-product-content");
-
-const brand = document.createElement("h4");
-brand.innerHTML = "Brand: " + product.brand_code;
-dataProductContent.appendChild(brand);
-
-const avilable = document.createElement("h5");
-avilable.innerHTML = "In Stock";
-avilable.style.color = "var(--break-color)"
-dataProductContent.appendChild(avilable);
-
-const productInfo = document.createElement("div");
-productInfo.className = "product-info"
-
-for (const key in product.plp_specifications) {
-    if (product.plp_specifications.hasOwnProperty(key)) {
-        const productInfoSpan = document.createElement("span");
-        const value = product.plp_specifications[key];
-        productInfoSpan.innerHTML = value;
-        productInfo.appendChild(productInfoSpan);
+    function decreasing(prod) {
+        let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
+        if (defaultQuantity > 0) {
+            defaultQuantity --;
+            const index = productAdded.findIndex(item => item.name === prod.name);
+            if (index !== -1) {
+                productAdded.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(productAdded));
+                currentQuantity();
+                quantitySpan.innerHTML = defaultQuantity;
+            }
+        }
     }
+
+    function increasing(card) {
+        let productAdded = JSON.parse(localStorage.getItem('cart')) || [];
+        defaultQuantity++;
+        productAdded.push(card);
+        localStorage.setItem('cart', JSON.stringify(productAdded));
+        currentQuantity();
+        quantitySpan.innerHTML = defaultQuantity;
+    }
+
+    currentQuantity();
+
+    // ////////////////////////////////// Get Product //////////////////////////////// //
+    const imagesProduct = document.getElementById("images-product-container");
+    const mainProductContent = document.getElementById("main-product-content");
+
+    // Images Product //
+    const productImages = product.image_keys.slice(0, 4);
+    const productImgsDiv = document.createElement("div");
+    productImgsDiv.id = "product-imgs-div"
+    imagesProduct.appendChild(productImgsDiv)
+
+    productImages.forEach((ele) => {
+        const productImgs = document.createElement("img");
+        productImgs.className = "product-imgs";
+        productImgs.src = ele;
+        productImgsDiv.appendChild(productImgs);
+    });
+
+
+    const mainProductImage = document.createElement("img");
+    mainProductImage.id = "main-product-img";
+    mainProductImage.src = product.image_key;
+    imagesProduct.appendChild(mainProductImage);
+
+    imagesProduct.appendChild(mainProductImage);
+
+
+    // Create Content //
+    const productTitle = document.createElement("h3");
+    productTitle.id = "product-title";
+    const words = product.name.trim().split(/\s+/);
+    const truncatedText = words.slice(0, 4).join(" ");
+
+    productTitle.style.textTransform = "capitalize";
+    productTitle.textContent = truncatedText;
+
+    mainProductContent.appendChild(productTitle);
+
+    // Rating Logic //
+    const ratingContainer = document.createElement("div");
+    ratingContainer.id = "stars-div";
+    ratingContainer.innerHTML = `
+                            <i class="rate stars fa-solid fa-star"></i>
+                            <i class="rate stars fa-solid fa-star"></i>
+                            <i class="rate stars fa-solid fa-star"></i>
+                            <i class="rate stars fa-solid fa-star"></i>
+                            <i class="rate stars fa-solid fa-star"></i>
+                            `
+    mainProductContent.appendChild(ratingContainer);
+    ratingContainer.style.margin = "0.5rem 0";
+
+    const getStars = ratingContainer.querySelectorAll(".rate");
+    const stars = Math.round(product.product_rating?.value);
+    getStars.forEach((ele, index) => {
+        if (index < stars) {
+            ele.classList.add("stars-filled");
+            ele.classList.remove("stars");
+        } else {
+            ele.classList.add("stars");
+            ele.classList.remove("stars-filled");
+        }
+    });
+
+    const priceSpan = document.createElement("span");
+    priceSpan.className = "product-price";
+    mainProductContent.appendChild(priceSpan);
+    priceSpan.innerText = product.price + " $";
+
+    const description = document.createElement("p");
+    description.className = "product-description";
+    mainProductContent.appendChild(description);
+    description.innerText = product.name;
+
+    // Second Product Section //
+    const dataProductContent = document.getElementById("data-product-content");
+
+    const brand = document.createElement("h4");
+    brand.innerHTML = "Brand: " + product.brand_code;
+    dataProductContent.appendChild(brand);
+
+    const avilable = document.createElement("h5");
+    avilable.innerHTML = "In Stock";
+    avilable.style.color = "var(--break-color)"
+    dataProductContent.appendChild(avilable);
+
+    const productInfo = document.createElement("div");
+    productInfo.className = "product-info"
+
+    for (const key in product.plp_specifications) {
+        if (product.plp_specifications.hasOwnProperty(key)) {
+            const productInfoSpan = document.createElement("span");
+            const value = product.plp_specifications[key];
+            productInfoSpan.innerHTML = value;
+            productInfo.appendChild(productInfoSpan);
+        }
+    }
+
+    dataProductContent.appendChild(productInfo)
+
+    const dataDiv = document.createElement("div");
+    dataDiv.className = "data-div";
+    dataProductContent.appendChild(dataDiv);
+
+    const quantityDiv = document.createElement("div");
+    quantityDiv.className = "quantity-div";
+    dataDiv.appendChild(quantityDiv);
+
+    const decreasingBtn = document.createElement("button");
+    decreasingBtn.className = "decreasing-btn";
+    decreasingBtn.innerHTML = "-";
+    decreasingBtn.addEventListener("click", ()=> decreasing(product));
+    quantityDiv.appendChild(decreasingBtn);
+
+    const quantitySpan = document.createElement("span");
+    quantitySpan.className = "current-quantity";
+    quantitySpan.innerHTML = defaultQuantity;
+    quantityDiv.appendChild(quantitySpan);
+
+    const increasingBtn = document.createElement("button");
+    increasingBtn.className = "increasing-btn";
+    increasingBtn.innerHTML = "+";
+    increasingBtn.addEventListener("click", () => increasing(product));
+    quantityDiv.appendChild(increasingBtn);
+
+    const buyBtn = document.createElement("button");
+    buyBtn.className = "buy-btn";
+    buyBtn.innerText = "Buy Now";
+    buyBtn.classList.add("btn-orange");
+    buyBtn.addEventListener("click", () => {
+        window.open("./../pages/cart.html", "_self");
+    });
+    dataDiv.appendChild(buyBtn);
+
+    const faveIcon = document.createElement("i");
+    faveIcon.className = "heart-icon fa-regular fa-heart";
+    dataDiv.appendChild(faveIcon);
+
+    const productRoles = document.createElement("div");
+    productRoles.innerHTML = `
+                <div id="delvery-div">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <div id="delivery-info">
+                        <h5>Free Delivery</h5>
+                        <p>Enter your postal code for Delivery Availability</p>
+                    </div>
+                </div>
+                <div id="return-div">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <div id="return-info">
+                        <h5>Return Delivery</h5>
+                        <p>Free 30 Days Delivery Returns. Details</p>
+                    </div>
+                </div>
+            `
+
+    dataProductContent.appendChild(productRoles);
+
 }
-
-dataProductContent.appendChild(productInfo)
-
-const dataDiv = document.createElement("div");
-dataDiv.className = "data-div";
-dataProductContent.appendChild(dataDiv);
-
-const quantityDiv = document.createElement("div");
-quantityDiv.className = "quantity-div";
-dataDiv.appendChild(quantityDiv);
-
-const decreasingBtn = document.createElement("button");
-decreasingBtn.className = "decreasing-btn";
-decreasingBtn.innerHTML = "-";
-decreasingBtn.addEventListener("click", ()=> decreasing(product));
-quantityDiv.appendChild(decreasingBtn);
-
-const quantitySpan = document.createElement("span");
-quantitySpan.className = "current-quantity";
-quantitySpan.innerHTML = defaultQuantity;
-quantityDiv.appendChild(quantitySpan);
-
-const increasingBtn = document.createElement("button");
-increasingBtn.className = "increasing-btn";
-increasingBtn.innerHTML = "+";
-increasingBtn.addEventListener("click", () => increasing(product));
-quantityDiv.appendChild(increasingBtn);
-
-const buyBtn = document.createElement("button");
-buyBtn.className = "buy-btn";
-buyBtn.innerText = "Buy Now";
-buyBtn.classList.add("btn-orange");
-buyBtn.addEventListener("click", () => {
-    window.open("./../pages/cart.html", "_self");
-});
-dataDiv.appendChild(buyBtn);
-
-const faveIcon = document.createElement("i");
-faveIcon.className = "heart-icon fa-regular fa-heart";
-dataDiv.appendChild(faveIcon);
-
-const productRoles = document.createElement("div");
-productRoles.innerHTML = `
-            <div id="delvery-div">
-                <i class="fa-solid fa-truck-fast"></i>
-                <div id="delivery-info">
-                    <h5>Free Delivery</h5>
-                    <p>Enter your postal code for Delivery Availability</p>
-                </div>
-            </div>
-            <div id="return-div">
-                <i class="fa-solid fa-rotate-left"></i>
-                <div id="return-info">
-                    <h5>Return Delivery</h5>
-                    <p>Free 30 Days Delivery Returns. Details</p>
-                </div>
-            </div>
-        `
-
-dataProductContent.appendChild(productRoles);
-
-
 // //////////////////////////////////////////////////////////////////////////////////////////////////////// //
 // 
 // 
@@ -510,6 +517,7 @@ dataProductContent.appendChild(productRoles);
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
 // /////////////////////////////////////////////// Start Home Code //////////////////////////////////////// //
+
 
 function getDifferenceTwoDate(date1, date2) {
 
@@ -533,7 +541,7 @@ function getDifferenceTwoDate(date1, date2) {
 
 function offerTimer(){
     let theCurrntDate = new Date();
-    let offerDate = new Date('6-26-2024');
+    let offerDate = new Date('6-30-2024');
     let counterDate = getDifferenceTwoDate(theCurrntDate,offerDate);
     offerDate.setDate(theCurrntDate.getDate()+5);
     document.getElementsByClassName('offer-timer-value')[0].innerText = counterDate.days;
