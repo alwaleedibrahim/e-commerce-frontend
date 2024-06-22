@@ -83,6 +83,10 @@ h6 {
     color: var(--text-color-grey-light);
 }
 
+p{
+    font-size: clamp(0.75rem, 2vw, 1rem);
+}
+
 .btn {
     font-size: clamp(0.875rem, 2.5vw, 1rem);
     font-weight: 500;
@@ -227,7 +231,7 @@ nav{
     padding: 0.5rem 1rem;
     background-color: transparent;
 }
-
+/* start user icon style */
 .user-icon-container {
     padding: 0.7rem 0.85rem;
 }
@@ -272,73 +276,8 @@ nav{
     color: inherit;
     text-decoration: inherit;
 }
+/* end user icon style */
 /* *************************************** End Header Style ********************************************* */
-
-/* *************************************** Start Offer Style ********************************************* */
-
-#offer-section {
-    display: flex;
-}
-
-.offer-container {
-    margin: auto;
-    width: 70%;
-    height: 90%;
-    position: relative;
-    background-image: url("./../images/offer.jpg");
-}
-
-.offer-text {
-    color: #b43b3b;
-    top:0;
-    padding: 2rem;
-} 
-
-.offer-text h1 {
-    margin: 2rem 0;
-    color: #ffffff;
-    max-width: 60%;
-}
-
-.offer-text h3 {
-    color: #19d765;
- }
-
-
-#buy-now-button {
-    margin: 1rem 0;
-    width: fit-content;
-    padding: 0.5rem 1.5rem;
-    background-color: #19d765;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#offer-counter {
-    display: flex;
-    flex-direction: row;
-}
-#offer-counter>div {
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 0.2rem;
-    border-radius: 50%;
-    height: 4rem;
-    width: 4rem;
-    margin: 0.25rem;
-}
-
-.offer-timer-value {
-    margin: auto;
-}
-.offer-timer-unit {
-    font-weight: bold;
-    margin: auto;
-}
-/* *************************************** End Offer Style ********************************************* */
 
 /* *************************************** Start Sale Style ******************************************* */
 .hover-icon {
@@ -460,6 +399,7 @@ footer{
     background-color: var(--black);
     color: var(--white);
     padding: 0.25rem 0;
+    overflow-x: hidden;
 }
 
 footer a{
@@ -597,7 +537,7 @@ footer a{
 }
 #main-content h1 {
     margin: 1rem 0;
-    font-size: 4rem;
+    font-size: clamp(2rem, 3vw, 4rem) ;
 }
 
 #main-btn {
@@ -640,14 +580,27 @@ footer a{
     justify-content: center;
     margin-top: 1.5rem;
 }
+
+#flash-sale-cards{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    justify-items: center;
+    margin: 2rem auto;
+}
 /* End Flash Sale Section */
 
 /* Start categories Section */
 #categories-icons{
     display: flex;
     align-items: center;
-    column-gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     margin: 2rem 0;
+}
+
+.category-name{
+    text-transform: capitalize;
 }
 
 .category-icon{
@@ -686,6 +639,72 @@ footer a{
 }
 /* End Best Selling Section */
 
+/* Start Offer Style */
+
+#offer-section {
+    display: flex;
+}
+
+.offer-container {
+    margin: auto;
+    width: 75%;
+    height: 90%;
+    position: relative;
+    background-image: url("./../images/offer.jpg");
+}
+
+.offer-text {
+    color: #b43b3b;
+    top:0;
+    padding: 2rem;
+} 
+
+.offer-text h1 {
+    margin: 2rem 0;
+    color: #ffffff;
+    max-width: 60%;
+}
+
+.offer-text h3 {
+    color: #19d765;
+ }
+
+
+#buy-now-button {
+    margin: 1rem 0;
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    background-color: #19d765;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#offer-counter {
+    display: flex;
+    flex-direction: row;
+}
+#offer-counter>div {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 0.2rem;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    margin: 0.25rem;
+}
+
+.offer-timer-value {
+    margin: auto;
+}
+.offer-timer-unit {
+    font-weight: bold;
+    margin: auto;
+}
+/*  End Offer Style */
+
 /* Start Explore Section */
 #explore-products{
     margin: 4rem auto;
@@ -710,7 +729,7 @@ footer a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 600px;
     padding: 1rem 0;
     color: var(--white);
     margin: 2rem auto;
@@ -726,7 +745,10 @@ footer a{
     background-repeat: no-repeat;
     width: 50%;
     height: 100%;
+    display: flex;
+    align-items: end;
 }
+
 
 #feature-contnet-right{
     width: 50%;
@@ -739,12 +761,11 @@ footer a{
     background-repeat: no-repeat;
     width: 100%;
     height: 50%;
+    display: flex;
+    align-items: end;
 }
 
 .feature-card-content{
-    position: absolute;
-    bottom: 0.25rem;
-    left: 0.25rem;
     width: 50%;
     padding: 1rem;
 }
@@ -777,12 +798,16 @@ footer a{
     background:url('./../images/feature3.png');
     background-size: contain;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: end;
 }
 
 #feature-contnet-right-bottom-two{
     background:url('./../images/feature4.png');
     background-size: contain;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: end;
 }
 
 /* feature tabs */
@@ -1009,6 +1034,27 @@ footer a{
 
     #main-product-content::after {
         display: block;
+    }
+
+    #features-tabs{
+        flex-direction: column;
+    }
+
+    #features-tabs .feature-tab{
+        width: 75%;
+    }
+
+    #main-content {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    #main-img-container {
+        display: none;
+    }
+
+    .feature-card-content{
+        width: 75%;
     }
 }
 
