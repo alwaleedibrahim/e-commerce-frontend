@@ -1,71 +1,66 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('./../api/products.json')
-        .then(response => response.json())
-        .then(data => {
-            let favorites = []; 
+// Define the favorites array to store favorite products
+let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-            // Check if favorites exist in localStorage
-            if (localStorage.getItem('favorites')) {
-                favorites = JSON.parse(localStorage.getItem('favorites'));
-            } else {
-                localStorage.setItem('favorites', JSON.stringify(favorites));
-            }
+// Function to add or remove products from favorites
+function toggleFavorite(product) {
+    const index = favorites.findIndex(fav => fav.id === product.id);
+    if (index === -1) {
+        favorites.push(product);
+    } else {
+        favorites.splice(index, 1);
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    renderFavorites();
+}
 
-            const favoritesContainer = document.getElementById('favorites-container');
-            favoritesContainer.innerHTML = '';
+// Function to render the favorite products
+function renderFavorites() {
+    const favoriteProductsDiv = document.getElementById('favorite-products');
+    favoriteProductsDiv.innerHTML = '';
+    card(favorites, favoriteProductsDiv);
+}
 
-            data.forEach(product => {
-                const card = createProductCard(product);
-
-                // Check if product is in favorites array
-                if (favorites.includes(product.id)) {
-                    card.classList.add('favorite'); 
-                }
-
-              
-                favoritesContainer.appendChild(card);
-
-              
-                const heartIcon = card.querySelector('.fa-heart');
-                heartIcon.addEventListener('click', function() {
-                    const productId = product.id;
-
-                    if (favorites.includes(productId)) {
-                       
-                        favorites = favorites.filter(id => id !== productId);
-                        card.classList.remove('favorite');
-                    } else {
-                        // Product is not a favorite, add it
-                        favorites.push(productId);
-                        card.classList.add('favorite');
-                    }
-
-                    // Update localStorage with new favorites array
-                    localStorage.setItem('favorites', JSON.stringify(favorites));
-                });
-            });
-        })
-        .catch(error => console.error('Error fetching products:', error));
+// Event listener for the favorite icon click
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('hover-icon')) {
+        const productId = event.target.dataset.productId;
+        const product = favorites.find(prod => prod.id === productId);
+        toggleFavorite(product);
+        event.target.classList.toggle('favorite');
+    }
 });
 
-function createProductCard(product) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-
-    card.innerHTML = `
-        <div class="images-product-container">
-            <img src="${product.image}" alt="${product.name}" class="product-img">
-        </div>
-        <div class="product-content-container">
-            <h2>${product.name}</h2>
-            <p>${product.description}</p>
-            <div class="data-div">
-                <span class="price">${product.price}</span>
-                <button class="btn-orange">Add to Cart</button>
-            </div>
-            <i class="fa-regular fa-heart"></i> <!-- Heart icon for marking favorites -->
-        </div>
-    `;
-
-    return card;
+// Function to mark products as favorite on load
+function markFavorites() {
+    document.querySelectorAll('.hover-icon').forEach(icon => {
+        const productId = icon.dataset.productId;
+        if (favorites.some(fav => fav.id === productId)) {
+            icon.classList.add('favorite');
+        }
+    });
 }
+
+// Call markFavorites on page load to reflect favorite status
+window.onload = function() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', './../api/products.json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            data = JSON.parse(xhr.responseText);
+            markFavorites();
+            if (location.pathname.includes('/pages/favorites.html')) {
+                renderFavorites();
+            }
+        }
+    };
+    xhr.send();
+};
+
+// CSS to style the favorite icon
+const style = document.createElement('style');
+style.innerHTML = `
+    .favorite {
+        color: red;
+    }
+`;
+document.head.appendChild(style);
