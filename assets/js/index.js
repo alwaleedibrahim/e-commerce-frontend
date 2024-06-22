@@ -7,7 +7,7 @@ window.onload = function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             data = JSON.parse(xhr.responseText);
-            if (location.pathname == '/index.html' && location.search == "") {
+            if (location.pathname == './../pages/index.html' && location.search == "") {
                 saleCard(data.laptop.slice(0, 10));
             }
             else if (location.pathname === './../pages/404.html') {
@@ -453,7 +453,7 @@ buyBtn.className = "buy-btn";
 buyBtn.innerText = "Buy Now";
 buyBtn.classList.add("btn-orange");
 buyBtn.addEventListener("click", () => {
-    window.open("/pages/cart.html", "_self");
+    window.open("./../pages/cart.html", "_self");
 });
 dataDiv.appendChild(buyBtn);
 
