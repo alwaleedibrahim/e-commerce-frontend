@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="./../assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -129,12 +129,12 @@
             </div>
         </div>
         <div id="categories-icons">
-            <div class="category-icon" onclick="location.href='/pages/category.html?cat=mobiles'">
+            <div class="category-icon" onclick="location.href='./../pages/category.html?cat=mobiles'">
                 <i class="fa-solid fa-mobile-screen-button"></i>
                 <span class="category-name">Phones</span>
             </div>
 
-            <div class="category-icon" onclick="location.href='/pages/category.html?cat=laptop'">
+            <div class="category-icon" onclick="location.href='./../pages/category.html?cat=laptop'">
                 <i class="fa-solid fa-computer"></i>
                 <span class="category-name">Computers</span>
             </div>
@@ -144,19 +144,48 @@
                 <span class="category-name">Televisions</span>
             </div>
 
-            <div class="category-icon" onclick="location.href='/pages/category.html?cat=camera'">
+            <div class="category-icon" onclick="location.href='./../pages/category.html?cat=camera'">
                 <i class="fa-solid fa-camera"></i>
                 <span class="category-name">Camera</span>
             </div>
 
-            <div class="category-icon" onclick="location.href='/pages/category.html?cat=books'">
+            <div class="category-icon" onclick="location.href='./../pages/category.html?cat=books'">
                 <i class="fa-solid fa-book"></i>
                 <span class="category-name">Books</span>
             </div>
         </div>
     </section>
     <!-- ----------------------------------- End categories ------------------------------------ -->
-
+    <!-- ----------------------------------- Start offer counter ------------------------------------ -->
+    
+    <section id="offer-section">
+        <div class="offer-container">
+            <div class="offer-text">
+                <h3>categories</h3>
+                <h1>Enhance your music experience</h1>
+                <div id="offer-counter">
+                    <div id="offer-counter-days">
+                        <div class="offer-timer-value">2</div>
+                        <div class="offer-timer-unit">Days</div>
+                    </div>
+                    <div id="offer-counter-hours">
+                        <div class="offer-timer-value">11</div>
+                        <div class="offer-timer-unit">Hours</div>
+                    </div>
+                    <div id="offer-counter-minutes">
+                        <div class="offer-timer-value">32</div>
+                        <div class="offer-timer-unit">Min</div>
+                    </div>
+                    <div id="offer-counter-seconds">
+                        <div class="offer-timer-value">15</div>
+                        <div class="offer-timer-unit">Sec</div>
+                    </div>
+                </div>
+                <div id="buy-now-button">Buy now</div>
+            </div>
+        </div>
+    </section>
+    <!-- ----------------------------------- End offer counter ------------------------------------ -->
     <!-- ----------------------------------- Start Best Selling -------------------------------- -->
     <section id="best-selling" class="container">
         <h3 class="section-headers">This Month</h3>

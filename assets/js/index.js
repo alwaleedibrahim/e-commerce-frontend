@@ -7,10 +7,10 @@ window.onload = function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             data = JSON.parse(xhr.responseText);
-            if (location.pathname == './../pages/index.html' && location.search == "") {
+            if (location.pathname.includes('/pages/index.html')  && location.search == "") {
                 saleCard(data.laptop.slice(0, 10));
             }
-            else if (location.pathname === './../pages/404.html') {
+            else if (location.pathname.includes('/pages/404.html')) {
                 if (location.search == "") {
                     let searchVal = '';
                     searchProduct(searchVal, true)
@@ -19,14 +19,14 @@ window.onload = function () {
                     searchProduct(searchVal, true)
                 }
             } 
-            else if (location.pathname == './../pages/category.html'){
+            else if (location.pathname.includes('/pages/category.html')) {
                 let cat = location.search.split('cat=')[1].split("&")[0];
                 card(data[cat],document.getElementById("sale"))
             }
-            else if (location.pathname == './../pages/product.html') {
+            else if (location.pathname.includes('/pages/product.html')) {
                 secSaleCard(data);
             }
-            else if (location.pathname == './../pages/home.html') {
+            else if (location.pathname.includes('/pages/home.html')) {
                 homeCard(data);
                 bestSellingCard(data);
             }
