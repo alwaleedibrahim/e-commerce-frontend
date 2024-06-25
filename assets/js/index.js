@@ -13,9 +13,11 @@ window.onload = function () {
             else if (location.pathname.includes('/pages/category.html')) {
                 let cat = location.search.split('cat=')[1].split("&")[0];
                 card(data[cat],document.getElementById("sale"))
+                document.getElementById("bar-product-counter").innerText = data[cat].length
             }
             else if (location.pathname.includes('/pages/product.html')) {
                 if(localStorage.getItem("product")){
+                    showProductPage()
                     secSaleCard(data);
                 }else{
                     location.href = "./../pages/index.html"
@@ -72,8 +74,19 @@ function card(data, div) {
         // Wish list Icon //
         const favIcon = document.createElement("i");
         favIcon.className = "hover-icon fa-regular fa-heart";
+        let favProducts = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        favProducts.forEach((ele)=>{
+            if(ele.name==card.name){
+                favIcon.classList.add("foved-icon")
+                favIcon.classList.toggle("fa-solid")
+            }
+        })
+        favIcon.onclick = (event)=>{
+            favIcon.classList.toggle("foved-icon")
+            favIconFunc(card,favIcon)
+        };
         cardDiv.appendChild(favIcon);
-        favIcon.addEventListener("click", ()=> {favIconFunc(card,favIcon)})
 
         // Images Container //
         const imagesDiv = document.createElement("div");
@@ -238,7 +251,7 @@ function searchProduct(sValue) {
     }
 
     if (searchResult.length == 0) {
-        location.href = "/pages/404.html";
+        location.href = "./../pages/404.html";
     }
     else{
         saleCard(searchResult)
@@ -289,7 +302,7 @@ function filtterFunction(by) {
 
 // ///////////////////////////////////////////////Start Product Code//////////////////////////////////////// //
 
-// function showProductPage(){
+ function showProductPage(){
     ///////////////////// Card Functions /////////////////////
     let defaultQuantity = 0;
 
@@ -345,6 +358,7 @@ function filtterFunction(by) {
     const mainProductContent = document.getElementById("main-product-content");
 
     // Images Product //
+            console.log(product)
     const productImages = product.image_keys.slice(0, 4);
     const productImgsDiv = document.createElement("div");
     productImgsDiv.id = "product-imgs-div"
@@ -471,9 +485,24 @@ function filtterFunction(by) {
         window.open("./../pages/cart.html", "_self");
     });
     dataDiv.appendChild(buyBtn);
-
+   
     const faveIcon = document.createElement("i");
-    faveIcon.className = "heart-icon fa-regular fa-heart";
+    faveIcon.className = "heart-icon fa-heart";
+    let favProducts = JSON.parse(localStorage.getItem('favorites')) || [];
+    faveIcon.classList.add('fa-regular');
+    favProducts.forEach((ele)=>
+        {
+            if(ele.name=== product.name){
+                // faveIcon.style.color = "var(--secondary-color)";
+                faveIcon.classList.add('fa-solid');
+                faveIcon.classList.toggle("foved-product")
+            }
+    })
+    faveIcon.onclick = (event)=>{
+        // console.log(14444443)
+        faveIcon.classList.toggle("foved-product")
+        favIconFunc(product,faveIcon)
+    };
     dataDiv.appendChild(faveIcon);
 
     const productRoles = document.createElement("div");
@@ -496,7 +525,7 @@ function filtterFunction(by) {
 
     dataProductContent.appendChild(productRoles);
 
-// }
+}
 // //////////////////////////////////////////////////////////////////////////////////////////////////////// //
 // 
 // 

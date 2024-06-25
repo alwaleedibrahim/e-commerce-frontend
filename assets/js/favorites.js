@@ -1,29 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    favouriteCards();
+    if (location.pathname.includes('/pages/favorites.html')){
+        favouriteCards();
+    }
 });
 
 function favIconFunc(prod, icon) {
     let favProducts = JSON.parse(localStorage.getItem('favorites')) || [];
     const index = favProducts.findIndex(item => item.name === prod.name);
-
+    icon.classList.toggle("fa-solid")
     if (index === -1) {
         favProducts.push(prod);
-        icon.classList.remove('fa-regular');
-        icon.classList.add('fa-solid');
     } else {
         favProducts.splice(index, 1);
-        icon.classList.remove('fa-solid');
-        icon.classList.add('fa-regular');
     }
 
     localStorage.setItem('favorites', JSON.stringify(favProducts));
-    favouriteCards();
+    if (location.pathname.includes('/pages/favorites.html')){
+        favouriteCards();
+    }
 }
 
 function favouriteCards() {
     const favContainer = document.getElementById("favorites-container");
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (favContainer) {
+    if(favContainer){
         favContainer.innerHTML = '';
     }
     favorites.forEach(card => {
@@ -37,14 +37,19 @@ function favouriteCards() {
 
         // Wish list Icon //
         const favIcon = document.createElement("i");
-        favIcon.className = "hover-icon fa-solid fa-heart";
-        cardDiv.appendChild(favIcon);
+        favIcon.className = "hover-icon fov-icon fa-regular fa-trash-can";
 
-        favIcon.addEventListener(("click"), () => favIconFunc(card, favIcon));
+        favIcon.classList.add("foved-icon")
+        
+        favIcon.onclick = (event)=>{
+              favIconFunc(card,favIcon)
+          };
+        
+        cardDiv.appendChild(favIcon);
 
         // Images Container //
         const imagesDiv = document.createElement("div");
-        imagesDiv.className = "images-div";
+        imagesDiv.className = "imagesi-div";
         cardDiv.appendChild(imagesDiv);
 
         const mainImage = document.createElement("img");
@@ -87,7 +92,7 @@ function favouriteCards() {
                     <i class="rate stars fa-solid fa-star"></i>
                     <i class="rate stars fa-solid fa-star"></i>
                     <i class="rate stars fa-solid fa-star"></i>
-                    `;
+                    `
         cardContent.appendChild(ratingContainer);
         ratingContainer.style.margin = "0.5rem 0";
 
@@ -138,8 +143,18 @@ function favouriteCards() {
 
         cartBtn.addEventListener("click", () => {
             setData(card); 
-            currentQuantity();
-            window.location.href = "/product.html";
+            window.location.href = "./../pages/product.html";
         });
     });
+}
+
+
+////////////////////////////set data for product
+
+
+function setData(product) {
+    let url = new URL(window.location);
+    url.searchParams.set('product', JSON.stringify(product));
+    window.history.pushState({}, '', url);
+    localStorage.setItem('product', JSON.stringify(product));
 }

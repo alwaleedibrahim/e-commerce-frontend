@@ -231,6 +231,10 @@ nav{
     padding: 0.5rem 1rem;
     background-color: transparent;
 }
+form button[type=submit]{
+    border: none;
+    background-color: transparent;
+}
 /* start user icon style */
 .user-icon-container {
     padding: 0.7rem 0.85rem;
@@ -292,6 +296,14 @@ nav{
     font-size: 1rem;
     transition: all 0.75s ease-in;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+.foved-icon{
+    visibility: visible;
+    left:2%;
+    color: var(--secondary-color); 
+}
+.foved-product{
+    color: var(--secondary-color) !important;
 }
 
 .card:hover .hover-icon {

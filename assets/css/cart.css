@@ -3,20 +3,6 @@
     position: relative;
 }
 
-#cart-counter{
-background-color: red;
-position: absolute;
-    right: 14%; 
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 10px;
-}
-
 #home-word{
 color: #7D8184;
 margin-left: 15px;

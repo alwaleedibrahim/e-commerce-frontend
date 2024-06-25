@@ -31,12 +31,12 @@
             </ul>
             <div id="header-icons">
                 <div id="search-div">
-                  <form action="./../pages/index.html">
+                  <form action="../pages/index.html">
                     <input type="search" name="search" id="search" placeholder="Find Your Product" />
                     <button type="submit"><i class="fas fa-search"></i></button>
                   </form>
                 </div>
-                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-heart" onclick='window.open("./../pages/favorites.html", "_self")'></i>
                 <a href="./../pages/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </nav>
@@ -66,7 +66,7 @@
         }
     </style>
     <section id="product-bar">
-        <div> <span id="bar-product-counter">13</span> Items </div>
+        <div> <span id="bar-product-counter">0</span> Items </div>
         <div> 
             Sort By 
             <select name="" id="" onchange="filtterFunction(this.value)">
@@ -152,6 +152,10 @@
     </footer>
     <!-- ----------------------------------- End Footer ------------------------------------------- -->
     <script src="./../assets/js/index.js"></script>
+    <script src="./../assets/js/favorites.js"></script>
+    <script>
+        // onload = ()=>document.getElementById("bar-product-counter").innerText = dataSearch.length
+    </script>
 </body>
 
 </html>
