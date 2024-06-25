@@ -73,6 +73,7 @@ function card(data, div) {
         const favIcon = document.createElement("i");
         favIcon.className = "hover-icon fa-regular fa-heart";
         cardDiv.appendChild(favIcon);
+        favIcon.addEventListener("click", ()=> {favIconFunc(card,favIcon)})
 
         // Images Container //
         const imagesDiv = document.createElement("div");

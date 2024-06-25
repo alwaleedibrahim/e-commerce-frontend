@@ -23,7 +23,9 @@ function favIconFunc(prod, icon) {
 function favouriteCards() {
     const favContainer = document.getElementById("favorites-container");
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    favContainer.innerHTML = '';
+    if (favContainer) {
+        favContainer.innerHTML = '';
+    }
     favorites.forEach(card => {
         const originalPrice = card.price;
         const salePrice = card.sale_price;
