@@ -12,6 +12,7 @@ window.onload = function () {
             }
             else if (location.pathname.includes('/pages/category.html')) {
                 let cat = location.search.split('cat=')[1].split("&")[0];
+                dataSearch = data[cat];
                 card(data[cat],document.getElementById("sale"))
                 document.getElementById("bar-product-counter").innerText = data[cat].length
             }
@@ -164,7 +165,7 @@ function card(data, div) {
             const salePriceSpan = document.createElement("span");
             salePriceSpan.className = "sale-price";
             priceDiv.appendChild(salePriceSpan);
-            salePriceSpan.innerText = originalPrice + " $";
+            salePriceSpan.innerText = salePrice + " $";
 
             const priceSpan = document.createElement("span");
             priceSpan.className = "price";
@@ -232,7 +233,10 @@ function flashSaleCard(data) {
 const saleDiv = document.getElementById("sale");
 
 function saleCard(data) {
+    console.log(dataSearch)
+    console.log(12)
     if (dataSearch.length === 0) {
+        console.log(12)
         dataSearch = data;
     }
     document.getElementById('bar-product-counter').innerHTML = data.length

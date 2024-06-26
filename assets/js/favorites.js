@@ -127,7 +127,7 @@ function favouriteCards() {
             const priceSpan = document.createElement("span");
             priceSpan.className = "price";
             priceDiv.appendChild(priceSpan);
-            priceSpan.innerText = originalPrice + " $";
+            priceSpan.innerText = salePrice + " $";
         } else {
             const salePriceSpan = document.createElement("span");
             salePriceSpan.className = "sale-price";

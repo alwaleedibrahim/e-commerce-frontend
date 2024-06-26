@@ -202,7 +202,6 @@ nav{
     margin-right: 0.5rem;
 }
 
-#nav-list .nav-link i:hover,
 #nav-list .nav-link a:hover{
     color: var(--secondary-color);
     border-bottom: 2px solid var(--secondary-color);
@@ -229,6 +228,8 @@ nav{
     outline: none;
     border: none;
     padding: 0.5rem 1rem;
+    width: 30vh;
+    max-width: 100%;
     background-color: transparent;
 }
 form button[type=submit]{
@@ -460,6 +461,7 @@ footer a{
         padding: 1rem;
         justify-content: space-around;
         width: 75%;
+        height: 60px;
         margin: 0 auto;
         border-radius: 5px;
         z-index: 1000;
@@ -469,8 +471,11 @@ footer a{
         display: block;
     }
 
-    .nav-link a{
+    .nav-link a span{
         display: none;
+    }
+    #search{
+        width: 20vh;
     }
 }
 /* *************************************** End Responsive Style ***************************************** */
