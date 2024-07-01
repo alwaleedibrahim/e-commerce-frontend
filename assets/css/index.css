@@ -202,6 +202,7 @@ nav{
     margin-right: 0.5rem;
 }
 
+#nav-list .nav-link i:hover,
 #nav-list .nav-link a:hover{
     color: var(--secondary-color);
     border-bottom: 2px solid var(--secondary-color);
@@ -217,21 +218,28 @@ nav{
     gap: 0.5rem;
 }
 
+form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 #search-div{
     background-color: var(--background-color);
     border-radius: 5px;
     padding-right: 0.5rem;
     cursor: pointer;
+    margin-left: 0.5rem;
 }
 
 #search{
     outline: none;
     border: none;
     padding: 0.5rem 1rem;
-    width: 30vh;
-    max-width: 100%;
+    font-size: clamp(0.5, 2vw, 1rem);
     background-color: transparent;
 }
+
 form button[type=submit]{
     border: none;
     background-color: transparent;
@@ -327,8 +335,8 @@ form button[type=submit]{
     padding: 0.5rem;
     border-radius: 5px;
     width: 100%;
-    max-width: 300px;
-    height: 250px;
+    min-width: 220px;
+    min-height: 250px;
     border: 1.5px solid var(--text-color-grey);
     background-color: var(--background-color);
 }
@@ -461,7 +469,6 @@ footer a{
         padding: 1rem;
         justify-content: space-around;
         width: 75%;
-        height: 60px;
         margin: 0 auto;
         border-radius: 5px;
         z-index: 1000;
@@ -471,11 +478,8 @@ footer a{
         display: block;
     }
 
-    .nav-link a span{
+    .nav-link a{
         display: none;
-    }
-    #search{
-        width: 20vh;
     }
 }
 /* *************************************** End Responsive Style ***************************************** */
@@ -663,10 +667,13 @@ footer a{
 }
 
 .offer-container {
-    margin: auto;
-    width: 75%;
-    height: 90%;
+    margin: 0 auto;
+    width: 85vw;
+    height: auto;
+    border-radius: 5px;
     position: relative;
+    background-size: cover;
+    background-position: center;
     background-image: url("./../images/offer.jpg");
 }
 
@@ -711,13 +718,15 @@ footer a{
     height: 4rem;
     width: 4rem;
     margin: 0.25rem;
+    padding: 0.25rem;
 }
 
 .offer-timer-value {
+    font-weight: bold;
     margin: auto;
 }
+
 .offer-timer-unit {
-    font-weight: bold;
     margin: auto;
 }
 /*  End Offer Style */
@@ -852,6 +861,32 @@ footer a{
 }
 /* End Feature Section */
 /* *************************************  End Home Style  ******************************************* */
+/* *************************************** Start Responsive Style *************************************** */
+@media (max-width: 768px) {
+    .offer-container{
+        background-image: none;
+        background-color: var(--black);
+    }
+
+    .offer-text{
+        text-align: center;
+    }
+
+    .offer-text h1{
+        max-width: 100%;
+    }
+
+    #offer-counter{
+        justify-content: space-evenly;
+        margin: 1rem;
+    }
+
+    #buy-now-button{
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+/* *************************************** End Responsive Style ***************************************** */
 /*
     *
     *
@@ -1042,6 +1077,10 @@ footer a{
 }
 
 @media (max-width: 600px) {
+    .card{
+        width:80%;
+    }
+
     #product-content-container {
         flex-direction: column;
     }
